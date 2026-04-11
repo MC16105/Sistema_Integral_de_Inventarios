@@ -32,7 +32,6 @@ La estructura de este proyecto se basa en la arquitectura N Capas (N-Tier), de m
 
 Con esto se logra el siguiente flujo
 
-Controller -> Service -> Repository -> DB
-                 |
-                DTO
+Controller -> Service & (DTO) -> Repository -> DB
+                
 
