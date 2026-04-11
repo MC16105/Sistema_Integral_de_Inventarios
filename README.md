@@ -18,3 +18,21 @@ El backend de este proyecto está construido con **Spring Boot**, generado media
 El código fuente del backend se encuentra en el directorio `/Backend` del repositorio. Esta carpeta contiene el proyecto completo de Spring Boot, incluyendo el archivo `pom.xml` y la estructura `src/` organizada mediante una arquitectura en capas (controlador, servicio, repositorio, DTO, entidad, configuración).
 
 Por defecto, el servidor se iniciará en `http://localhost:8080`.
+
+## Estructura del Proyecto (Backend)
+
+La estructura de este proyecto se basa en la arquitectura N Capas (N-Tier), de manera que se organiza de manera separada, en modulos independientes. La estructura es la siguiente
+
+- controller/
+- service/
+- repository/
+- dto/
+- entity/
+- config/ 
+
+Con esto se logra el siguiente flujo
+
+Controller -> Service -> Repository -> DB
+                 |
+                DTO
+
