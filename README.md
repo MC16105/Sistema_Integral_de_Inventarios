@@ -1,13 +1,16 @@
 Integrantes - Grupo #4
+
+=== SISTEMA INTEGRAL DE INVENTARIOS ===
 _____________________________________________________
-|          SISTEMA INTEGRAL DE INVENTARIOS          |
+| N°| ALUMNO                              | CARNET  |
 |---|-------------------------------------|---------|
-| 1 | Luis Fernando Moran Castro          | MC16105 |
-| 2 | José Fernando Guadron Landaverde    | GL23032 |
-| 3 | Luis Alejandro Lopez Menjivar       | LM23037 |
-| 4 | Juan Pablo José Martínez Santamaría | MS24013 |
-| 5 | Irene Guadalupe León Madrid         | LM24048 |
+| 1 | LUIS FERNANDO MORAN CASTRO         	| MC16105 |
+| 2 | JOSE FERNANDO GUADRON LANDAVERDE	  | GL23032 |
+| 3 | LUIS ALEJANDRO LOPEZ MENJIVAR 	    | LM23037 |
+| 4 | JUAN PABLO JOSE MARTINEZ SANTAMARIA | MS24013 |
+| 5 | IRENE GUADALUPE LEON MADRID         |	LM24048 |
 |___|_____________________________________|_________|
+
 ## Configuración del Backend (Spring Boot)
 
 El backend de este proyecto está construido con **Spring Boot**, generado mediante Spring Initializr y configurado con **Maven** como herramienta de compilación. Incluye dependencias principales como Spring Web, Spring Data JPA, controlador de PostgreSQL y OpenAPI (Swagger) para la documentación de la API.
