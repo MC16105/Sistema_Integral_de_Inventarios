@@ -1,6 +1,7 @@
 package edu.ues.sii.inventory_system.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ProductoController {
 
     @PostMapping
     @Operation(summary = "Crear producto")
+    @ResponseStatus(HttpStatus.CREATED)
     public ProductoDTO crear(@RequestBody ProductoDTO dto) {
         return service.guardar(dto);
     }
@@ -37,6 +39,7 @@ public class ProductoController {
 
     @DeleteMapping("/{id}")
     @Operation(summary = "Eliminar producto")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminar(@PathVariable Long id) {
         service.eliminar(id);
     }
