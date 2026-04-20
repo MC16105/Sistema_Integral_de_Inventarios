@@ -3,5 +3,6 @@
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/ProductoController.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/ProductoDTO.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/Producto.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/exception/ExceptionHandlerConfig.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/ProductoRepository.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/ProductoService.java
