@@ -23,15 +23,84 @@ Por defecto, el servidor se iniciará en `http://localhost:8080`.
 
 La estructura de este proyecto se basa en la arquitectura N Capas (N-Tier), de manera que se organiza de manera separada, en modulos independientes. La estructura es la siguiente
 
-- controller/
-- service/
-- repository/
-- dto/
-- entity/
+- controller/ -> Manejo de Endpoint HTTP
+- service/ -> Logica de negocio
+- repository/ -> Acceso a datos con JPS
+- entity/ -> Representacion de la Tabla en la DB
+- dto/ -> Transferencia de datos entre capas
 - config/ 
+- exception/
 
 Con esto se logra el siguiente flujo
 
 Controller -> Service & (DTO) -> Repository -> DB
                 
+## Validaciones Implementadas  (README Actualizado 20-04-2026)
 
+Se añadieron validaciones para garantizar la integridad de los datos
+
+- @NotBlank -> No permite valores vacios
+- @Pattern -> Solo letras (Y caracteres validos)
+- @Size -> Longitud controlada
+- @NotNull -> Campo obligatorio
+- @Min -> No permite valores negativos
+- @Max -> Límite máximo permitido
+- @Digists->Control de Formato decimal
+
+## Normalización de datos
+
+Se implementó limpieza y estandarización de datos en la capa Service:
+
+- Eliminación de espacios con .trim()
+- Conversión de texto a minúsculas (toLowerCase())
+- Aplicado en:
+-- Método toEntity() (creación)
+-- Método actualizar()
+
+## Consideraciones importantes
+
+- Los IDs en base de datos no se reinician automáticamente (comportamiento normal)
+- Validaciones en backend complementan pero no sustituyen validaciones frontend
+- Se recomienda mantener separación clara entre Entity y DTO
+
+## Estado actual
+
+✔ API funcional
+✔ CRUD completo
+✔ Validaciones implementadas
+✔ Persistencia en PostgreSQL
+✔ Documentación interactiva disponible
+
+## Creacion de @RestControllerAdvice ( - exception/)
+
+Es una anotación de Spring que permite manejar errores de forma global en toda una API.
+
+¿Para qué sirve?
+- Capturar excepciones automáticamente
+- Personalizar respuestas de error
+- Evitar código repetido
+- Hacer un API más limpia y profesional
+
+Cómo funciona?
+- Ocurre un error (ej: validación)
+- Spring lanza una excepción
+- @RestControllerAdvice la intercepta
+- Devuelve una respuesta personalizada
+
+## ¿Qué error maneja?
+
+@MethodArgumentNotValidException
+
+Se lanza cuando fallan validaciones como:
+
+- @NotNull
+- @NotBlank
+- @Min
+- @Pattern
+
+## Ventajas
+
+- Código más limpio
+- Respuestas claras para el cliente
+- Centraliza manejo de errores
+- Escalable (puedes agregar más excepciones)
