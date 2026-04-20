@@ -1,5 +1,6 @@
 package edu.ues.sii.inventory_system.controller;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -27,13 +28,13 @@ public class ProductoController {
     @PostMapping
     @Operation(summary = "Crear producto")
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductoDTO crear(@RequestBody ProductoDTO dto) {
+    public ProductoDTO crear(@RequestBody @Valid ProductoDTO dto) {
         return service.guardar(dto);
     }
 
     @PutMapping("/{id}")
     @Operation(summary = "Actualizar producto")
-    public ProductoDTO actualizar(@PathVariable Long id, @RequestBody ProductoDTO dto) {
+    public ProductoDTO actualizar(@PathVariable Long id, @RequestBody @Valid ProductoDTO dto) {
         return service.actualizar(id, dto);
     }
 

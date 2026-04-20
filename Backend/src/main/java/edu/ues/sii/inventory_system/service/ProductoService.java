@@ -29,7 +29,7 @@ public class ProductoService {
 
     public ProductoDTO actualizar(Long id, ProductoDTO dto) {
         Producto p = repo.findById(id).orElseThrow();
-        p.setNombre(dto.getNombre());
+        p.setNombre(dto.getNombre().trim().toLowerCase());
         p.setPrecio(dto.getPrecio());
         p.setStock(dto.getStock());
         p.setDescripcion(dto.getDescripcion());
@@ -54,7 +54,7 @@ public class ProductoService {
 
     private Producto toEntity(ProductoDTO dto) {
         Producto p = new Producto();
-        p.setNombre(dto.getNombre());
+        p.setNombre(dto.getNombre().trim().toLowerCase());
         p.setPrecio(dto.getPrecio());
         p.setStock(dto.getStock());
         p.setDescripcion(dto.getDescripcion());
