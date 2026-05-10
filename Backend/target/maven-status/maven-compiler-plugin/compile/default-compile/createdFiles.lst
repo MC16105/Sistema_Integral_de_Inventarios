@@ -1,8 +1,13 @@
+edu/ues/sii/inventory_system/entity/Proveedor.class
 edu/ues/sii/inventory_system/entity/Producto.class
 edu/ues/sii/inventory_system/repository/ProductoRepository.class
 edu/ues/sii/inventory_system/service/ProductoService.class
+edu/ues/sii/inventory_system/controller/ProveedorController.class
 edu/ues/sii/inventory_system/InventorySystemApplication.class
-edu/ues/sii/inventory_system/exception/ExceptionHandlerConfig.class
 edu/ues/sii/inventory_system/controller/ProductoController.class
 edu/ues/sii/inventory_system/config/OpenAPIConfig.class
+edu/ues/sii/inventory_system/repository/ProveedorRepository.class
+edu/ues/sii/inventory_system/service/ProveedorService.class
+edu/ues/sii/inventory_system/exception/GlobalExceptionHandler.class
+edu/ues/sii/inventory_system/dto/ProveedorDTO.class
 edu/ues/sii/inventory_system/dto/ProductoDTO.class

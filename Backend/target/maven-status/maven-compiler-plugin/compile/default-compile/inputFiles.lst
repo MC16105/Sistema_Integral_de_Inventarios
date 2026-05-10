@@ -1,8 +1,13 @@
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/InventorySystemApplication.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/config/OpenAPIConfig.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/ProductoController.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/ProveedorController.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/ProductoDTO.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/ProveedorDTO.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/Producto.java
-/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/exception/ExceptionHandlerConfig.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/Proveedor.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/exception/GlobalExceptionHandler.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/ProductoRepository.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/ProveedorRepository.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/ProductoService.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/ProveedorService.java

@@ -1,9 +1,7 @@
 package edu.ues.sii.inventory_system.service;
 
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import edu.ues.sii.inventory_system.dto.ProductoDTO;
 import edu.ues.sii.inventory_system.entity.Producto;
 import edu.ues.sii.inventory_system.repository.ProductoRepository;
@@ -11,36 +9,35 @@ import edu.ues.sii.inventory_system.repository.ProductoRepository;
 @Service
 public class ProductoService {
 
-    @Autowired
-    private ProductoRepository repo;
+    private final ProductoRepository repo;
 
-    public List<ProductoDTO> listar(){
-        return repo.findAll().stream().map(this::toDTO).toList();
+    public ProductoService(ProductoRepository repo) {
+        this.repo = repo; }
+
+    public List<ProductoDTO> listar() {
+        return repo.findAll()
+                .stream()
+                .map(this::toDTO)
+                .toList();
     }
 
     public ProductoDTO guardar(ProductoDTO dto) {
-        Producto p = toEntity(dto);
-        p.setNombre(dto.getNombre());
-        p.setPrecio(dto.getPrecio());
-        p.setStock(dto.getStock());
-        p.setDescripcion(dto.getDescripcion());
-        return toDTO(repo.save(p));
-    }
+        Producto p = new Producto();
+        mapToEntity(dto, p);
+        return toDTO(repo.save(p)); }
 
     public ProductoDTO actualizar(Long id, ProductoDTO dto) {
-        Producto p = repo.findById(id).orElseThrow();
-        p.setNombre(dto.getNombre().trim().toLowerCase());
-        p.setPrecio(dto.getPrecio());
-        p.setStock(dto.getStock());
-        p.setDescripcion(dto.getDescripcion());
-        return toDTO(repo.save(p));
-    }
+        Producto p = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Producto no encontrado"));
+        mapToEntity(dto, p);
+        return toDTO(repo.save(p)); }
 
     public void eliminar(Long id) {
-        repo.deleteById(id);
-    }
+        if (!repo.existsById(id)) {
+            throw new RuntimeException("Producto no encontrado"); }
+        repo.deleteById(id); }
 
-    //MAPEO
+    // MAPEO
 
     private ProductoDTO toDTO(Producto p) {
         ProductoDTO dto = new ProductoDTO();
@@ -49,16 +46,11 @@ public class ProductoService {
         dto.setPrecio(p.getPrecio());
         dto.setStock(p.getStock());
         dto.setDescripcion(p.getDescripcion());
-        return dto;
-    }
+        return dto; }
 
-    private Producto toEntity(ProductoDTO dto) {
-        Producto p = new Producto();
-        p.setNombre(dto.getNombre().trim().toLowerCase());
+    private void mapToEntity(ProductoDTO dto, Producto p) {
+        p.setNombre(dto.getNombre());
         p.setPrecio(dto.getPrecio());
         p.setStock(dto.getStock());
-        p.setDescripcion(dto.getDescripcion());
-        return p;
-    }
-
+        p.setDescripcion(dto.getDescripcion()); }
 }

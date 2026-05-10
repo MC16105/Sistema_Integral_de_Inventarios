@@ -1,17 +1,35 @@
 package edu.ues.sii.inventory_system.entity;
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 
 @Entity
+@Table(name = "producto")
 public class Producto {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, length = 100)
     private String nombre;
+
+    @Column(nullable = false, length = 255)
     private String descripcion;
-    private Double precio;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal precio;
+
+    @Column(nullable = false)
     private Integer stock;
+
+    public Producto() { }
+
+    //RELACIONES
+
+    @ManyToOne
+    @JoinColumn(name = "proveedor_id")
+    private Proveedor proveedor;
 
     //GETTER Y SETTER
 
@@ -30,9 +48,9 @@ public class Producto {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion; }
 
-    public Double getPrecio() {
+    public BigDecimal getPrecio() {
         return precio; }
-    public void setPrecio(Double precio) {
+    public void setPrecio(BigDecimal precio) {
         this.precio = precio; }
 
     public Integer getStock() {
