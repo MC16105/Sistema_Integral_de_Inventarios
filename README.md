@@ -9,7 +9,7 @@ _____________________________________________________
 | 3 | LUIS ALEJANDRO LOPEZ MENJIVAR 	    | LM23037 |
 | 4 | JUAN PABLO JOSE MARTINEZ SANTAMARIA | MS24013 |
 | 5 | IRENE GUADALUPE LEON MADRID         |	LM24048 |
-|___|_____________________________________|_________|
+|---|-------------------------------------|---------|
 
 ## Configuración del Backend (Spring Boot)
 
@@ -104,3 +104,58 @@ Se lanza cuando fallan validaciones como:
 - Respuestas claras para el cliente
 - Centraliza manejo de errores
 - Escalable (puedes agregar más excepciones)
+
+## Spring Security + JWT (10/05/2026)
+
+Spring Security 
+Esta es la base de seguridad en Spring Boot.
+¿Qué te da automáticamente?
+- Protección de endpoints (API)
+- Sistema de autenticación (login)
+- Sistema de autorización (roles: USER, ADMIN, etc.)
+- Filtros de seguridad en cada request
+- Password encoding (BCrypt por defecto)
+- Sesiones o manejo de seguridad stateless (según config)
+
+Importante
+Al agregar esta dependencia:
+TODOS los endpoints quedan protegidos por defecto
+Pedirá login automáticamente (form login o basic auth)
+
+JWT ¿Para qué sirve?
+Esta librería sirve para crear, firmar y validar tokens JWT.
+¿Qué es JWT en un sistema?
+
+Es un token que representa un usuario autenticado.
+
+Ejemplo:
+
+" eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9... "
+Flujo típico en un proyecto:
+
+- Usuario hace login (/auth/login)
+- Backend valida usuario
+- Backend genera JWT con jjwt
+- Backend devuelve el token al frontend
+- Frontend lo guarda (localStorage o cookies)
+- En cada request:
+" Authorization: Bearer TOKEN "
+- Spring Security valida el token antes de permitir acceso
+
+¿Cómo trabajan juntos?
+
+___________________________________________________________
+| Spring Security     | JWT                               |
+|---------------------|-----------------------------------|
+| Protege Endpoint    | Identifica al Usaurio             |
+| Controla Acceso     | Prueba que el usuario es Valido   |
+| Filtra Request 	    | Proporciona el Token de Identidad |
+|---------------------|-----------------------------------|
+
+Spring Security	JWT
+Protege endpoints	Identifica al usuario
+Controla acceso	Prueba que el usuario es válido
+Filtra requests	Proporciona el token de identidad
+
+- Spring Security es el “guardia”
+- JWT es la “credencial”
