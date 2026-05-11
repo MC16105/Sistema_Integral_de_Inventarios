@@ -150,7 +150,7 @@ ___________________________________________________________
 | Protege Endpoint    | Identifica al Usaurio             |
 | Controla Acceso     | Prueba que el usuario es Valido   |
 | Filtra Request 	    | Proporciona el Token de Identidad |
-|---------------------|-----------------------------------|
+
 
 Spring Security	JWT
 Protege endpoints	Identifica al usuario
