@@ -31,6 +31,11 @@ public class Producto {
     @JoinColumn(name = "proveedor_id")
     private Proveedor proveedor;
 
+    // RELACION CON USUARIO
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
     //GETTER Y SETTER
 
     public Long getId() {
