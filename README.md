@@ -9,7 +9,6 @@ _____________________________________________________
 | 3 | LUIS ALEJANDRO LOPEZ MENJIVAR 	    | LM23037 |
 | 4 | JUAN PABLO JOSE MARTINEZ SANTAMARIA | MS24013 |
 | 5 | IRENE GUADALUPE LEON MADRID         |	LM24048 |
-|---|-------------------------------------|---------|
 
 ## Configuración del Backend (Spring Boot)
 
@@ -151,11 +150,139 @@ ___________________________________________________________
 | Controla Acceso     | Prueba que el usuario es Valido   |
 | Filtra Request 	    | Proporciona el Token de Identidad |
 
-
-Spring Security	JWT
-Protege endpoints	Identifica al usuario
-Controla acceso	Prueba que el usuario es válido
-Filtra requests	Proporciona el token de identidad
-
 - Spring Security es el “guardia”
 - JWT es la “credencial”
+
+## SecurityBeansConfig, SecurityConfig, AuthResponseDTO, Role enum, JwtFilter y JwtUntil
+Explicacion de cada uno como piezas de un sistema típico de autenticación con Spring Security + JWT. 
+Estos nombres pueden variar un poco entre proyectos, pero la función es prácticamente estándar.
+
+- SecurityBeansConfig, ¿Qué es?
+Es una clase donde se definen beans de seguridad reutilizables.
+
+¿Para qué sirve?
+Spring Security necesita componentes como:
+
+- Password encoder
+- AuthenticationManager
+- Provider de autenticación
+
+En Spring Boot 3, ya no se configuran automáticamente como antes, por eso se define.
+
+Ejemplo típico:
+- PasswordEncoder (BCrypt)
+- AuthenticationManager
+
+En resumen: Es donde “Se registran herramientas de seguridad” para usarlas en todo el sistema.
+
+- SecurityConfig, ¿Qué es?
+Es el corazón de la seguridad en Spring Boot.
+
+¿Qué hace?
+Define:
+- Qué endpoints son públicos
+- Qué endpoints requieren login
+- Qué tipo de autenticación usar (JWT, stateless)
+- Qué filtros se aplican
+
+Ejemplo:
+.requestMatchers("/auth/**").permitAll()
+.anyRequest().authenticated()
+
+También configura:
+- CSRF desactivado (en APIs REST)
+- Session management (STATELESS)
+- Agrega el JwtFilter
+
+En resumen: Es donde se definen las reglas del juego de seguridad
+
+- AuthResponseDTO, ¿Qué es?
+Es un objeto de respuesta (DTO) que se devuelve después del login.
+
+¿Para qué sirve?
+Cuando el usuario hace login exitoso, no devuelves la entidad completa, sino algo como:
+
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9...",
+  "username": "luis",
+  "role": "ADMIN"
+}
+
+Puede incluir:
+- JWT token
+- Username
+- Roles
+- Expiration (opcional)
+
+En resumen: Es la respuesta del login al frontend.
+
+- Role enum, ¿Qué es?
+Es una enumeración de roles de usuario.
+
+¿Para qué sirve?
+Define los permisos del sistema.
+
+Ejemplo:
+
+public enum Role {
+    USER,
+    ADMIN
+}
+
+Uso:
+- Control de acceso
+- Autorización en endpoints
+
+Ejemplo: @PreAuthorize("hasRole('ADMIN')")
+
+En resumen: Define qué puede hacer cada tipo de usuario.
+
+- JwtFilter, ¿Qué es?
+Es un filtro que intercepta cada request HTTP.
+
+¿Qué hace?
+Cada vez que alguien llama tu API:
+Lee el header:
+- Authorization: Bearer TOKEN
+- Valida el token
+- Extrae el usuario
+- Lo coloca en el contexto de seguridad
+
+Flujo:
+Request → JwtFilter → Validar token → SecurityContext → Controller
+
+En resumen: Es el que revisa el JWT en cada petición.
+
+- JwtUtil, ¿Qué es?
+Es una clase utilitaria para crear y validar tokens JWT.
+
+¿Qué hace?
+Normalmente contiene:
+
+- Generar token -> generateToken(user)
+- Extraer username -> extractUsername(token)
+- Validar token -> validateToken(token, userDetails)
+- Verificar expiración -> isTokenExpired(token)
+
+En resumen: Es la clase que “crea y analiza los tokens JWT”.
+
+RESUMEN GENERAL 
+
+_______________________________________________________________
+| Componente         | Funcion                                |
+|--------------------|----------------------------------------|
+| SecurityConfig     | Definde reglas de seguridad            |
+| SecurityBeanConfig | Registra Beans (Encoder, Auth manager) |
+| JwtFilter	         | Intercepta request y valida Token      |
+| JwtUtil            | Crea y valida JWT                      |
+| Role Enum          | Definde permisos (USER, ADMIN)         |
+| AuthResponseDTO    | Respuesta del login con token          |
+
+Flujo completo del sistema
+- Usuario se registra
+- Usuario hace login
+- Backend usa JwtUtil → genera token
+- Devuelve AuthResponseDTO
+- Frontend guarda token
+- Cada request pasa por JwtFilter
+- SecurityConfig decide si permite o no acceso
