@@ -46,4 +46,24 @@ public class VentaService {
     public List<Venta> listar() {
         return ventaRepository.findAll();
     }
+    public Venta obtenerPorId(Long id) {
+    return ventaRepository.findById(id).orElse(null);
+}
+
+public Venta editar(Long id, Venta venta) {
+
+    Venta ventaExistente = ventaRepository.findById(id).orElse(null);
+
+    if (ventaExistente == null) {
+        return null;
+    }
+
+    venta.setId(id);
+
+    return ventaRepository.save(venta);
+}
+
+public void eliminar(Long id) {
+    ventaRepository.deleteById(id);
+}
 }

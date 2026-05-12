@@ -24,4 +24,18 @@ public class VentaController {
     public List<Venta> listar() {
         return ventaService.listar();
     }
+    @GetMapping("/{id}")
+    public Venta obtenerPorId(@PathVariable Long id) {
+        return ventaService.obtenerPorId(id);
+    }
+
+    @PutMapping("/{id}")
+    public Venta editar(@PathVariable Long id, @RequestBody Venta venta) {
+        return ventaService.editar(id, venta);
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        ventaService.eliminar(id);
+    }
 }

@@ -46,4 +46,24 @@ public class CompraService {
     public List<Compra> listar() {
         return compraRepository.findAll();
     }
+    public Compra obtenerPorId(Long id) {
+    return compraRepository.findById(id).orElse(null);
+}
+
+public Compra editar(Long id, Compra compra) {
+
+    Compra compraExistente = compraRepository.findById(id).orElse(null);
+
+    if (compraExistente == null) {
+        return null;
+    }
+
+    compra.setId(id);
+
+    return compraRepository.save(compra);
+}
+
+public void eliminar(Long id) {
+    compraRepository.deleteById(id);
+}
 }

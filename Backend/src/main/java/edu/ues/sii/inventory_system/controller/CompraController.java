@@ -24,4 +24,18 @@ public class CompraController {
     public List<Compra> listar() {
         return compraService.listar();
     }
+    @GetMapping("/{id}")
+public Compra obtenerPorId(@PathVariable Long id) {
+    return compraService.obtenerPorId(id);
+}
+
+@PutMapping("/{id}")
+public Compra editar(@PathVariable Long id, @RequestBody Compra compra) {
+    return compraService.editar(id, compra);
+}
+
+@DeleteMapping("/{id}")
+public void eliminar(@PathVariable Long id) {
+    compraService.eliminar(id);
+}
 }
