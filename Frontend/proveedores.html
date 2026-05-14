@@ -14,29 +14,29 @@
 
     <h1>CRUD Proveedores</h1>
 
-    <input type="text" id="nombreProveedor" placeholder="Nombre proveedor">
-
-    <input type="text" id="telefonoProveedor" placeholder="Teléfono">
+<input type="text" id="nombreProveedor" placeholder="Nombre de la Empresa">
+<input type="text" id="contactoProveedor" placeholder="Nombre del Contacto">
+<input type="text" id="telefonoProveedor" placeholder="Teléfono">
+<input type="email" id="emailProveedor" placeholder="Correo Electrónico">
+<textarea id="direccionProveedor" placeholder="Dirección Completa"></textarea>
 
     <button onclick="agregarProveedor()">
         Guardar
     </button>
 
-    <table>
-
-        <thead>
-            <tr>
-                <th>Proveedor</th>
-                <th>Teléfono</th>
-                <th>Acción</th>
-            </tr>
-        </thead>
-
-        <tbody id="tablaProveedores">
-
+ <table border="1" style="width: 100%; margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>Proveedor</th>
+            <th>Contacto</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Dirección</th>
+        </tr>
+    </thead>
+    <tbody id="tablaProveedores">
         </tbody>
-
-    </table>
+</table>
 
 </div>
 
