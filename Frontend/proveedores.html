@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Proveedores</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>CRUD Proveedores</h1>
+
+    <input type="text" id="nombreProveedor" placeholder="Nombre proveedor">
+
+    <input type="text" id="telefonoProveedor" placeholder="Teléfono">
+
+    <button onclick="agregarProveedor()">
+        Guardar
+    </button>
+
+    <table>
+
+        <thead>
+            <tr>
+                <th>Proveedor</th>
+                <th>Teléfono</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+
+        <tbody id="tablaProveedores">
+
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
