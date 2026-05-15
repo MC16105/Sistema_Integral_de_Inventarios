@@ -2,6 +2,8 @@ package edu.ues.sii.inventory_system.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "categoria")
 public class Categoria {
@@ -9,13 +11,14 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String nombre;
-
     private String descripcion;
 
-    public Categoria() {
-    }
+    //RELACION
+    @OneToMany(mappedBy = "categoria")
+    private List<Producto> productos;
+
+    public Categoria() { }
 
     public Long getId() {
         return id;

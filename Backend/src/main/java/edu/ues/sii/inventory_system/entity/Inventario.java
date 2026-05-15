@@ -14,12 +14,13 @@ public class Inventario {
 
     private String ubicacion;
 
+    //RELACION
     @ManyToOne
     @JoinColumn(name = "producto_id")
+
     private Producto producto;
 
-    public Inventario() {
-    }
+    public Inventario() { }
 
     public Long getId() {
         return id;

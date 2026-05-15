@@ -36,6 +36,11 @@ public class Producto {
     @JoinColumn(name = "usuario_id")
     private Usuario usuario;
 
+    //RELACION CON CATEGORIA
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
+
     //GETTER Y SETTER
 
     public Long getId() {
