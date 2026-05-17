@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav>
+    <a href="proveedores.html">
+        PROVEEDORES
+    </a>
+    <a href="historialprecios.html">
+        HISTORIAL
+    </a>
+    <a href="productos.html">
+        PRODUCTOS
+    </a>
+</nav>
+<div class="container">
+    <h1>Gestión de Productos</h1>
+    <p> Administración de productos del sistema  </p>
+    <input
+        type="text"
+        id="codigo"
+        placeholder="Código"
+        required >
+    <input
+        type="text"
+        id="nombreProducto"
+        placeholder="Nombre producto"
+        required >
+    <input
+        type="number"
+        id="precio"
+        placeholder="Precio"
+        required >
+    <input
+        type="number"
+        id="stock"
+        placeholder="Stock"
+        required >
+    <input
+        type="text"
+        id="descripcion"
+        placeholder="Descripción"
+        required >
+    <button onclick="agregarProducto()">
+        Guardar
+    </button>
+    <div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Descripción</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody id="tablaProductos">
+        </tbody>
+    </table>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

@@ -2,37 +2,95 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     background: #f4f4f4;
     margin: 0;
-    padding: 20px;
+    padding: 10px;
 }
+
+/* NAVBAR */
+
+nav{
+    background: linear-gradient(90deg, #0f50b3, #0d183a);
+    padding: 10px;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.3);
+}
+
+nav a{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+nav a:hover{
+    background: white;
+    color: #222;
+}
+
+/* CONTENEDOR */
 
 .container{
     background: white;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
-    max-width: 400px;
-    margin: auto;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.2);
 }
+
+/* TITULOS */
 
 h1{
     text-align: center;
+    font-size: 24px;
 }
+
+p{
+    text-align: center;
+    color: gray;
+}
+
+/* INPUTS */
 
 input{
     width: 100%;
     padding: 12px;
     margin-top: 10px;
     box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
+
+/* BOTONES */
 
 button{
     width: 100%;
     padding: 12px;
     margin-top: 10px;
-    border: none;
-    background: #333;
-    color: white;
-    border-radius: 5px;
+    background: white;
+    color: #232191;
+    border: 2px solid #232191;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 14px;
+    font-weight: bold;
 }
+
+/* EFECTO HOVER */
+
+button:hover{
+    background: #100f7a;
+    color: white;
+}
+
+/* TABLAS */
 
 table{
     width: 100%;
@@ -44,12 +102,51 @@ th, td{
     border: 1px solid gray;
     padding: 10px;
     text-align: center;
+    font-size: 12px;
+    padding: 8px;
 }
 
-@media (max-width: 600px){
+.table-container{
+    width: 100%;
+    overflow-x: auto;
+}
 
-    .container{
-        width: 100%;
+/* ENCABEZADO */
+
+th{
+    background: linear-gradient(90deg,  #124ba1, #0e2772);
+    color: white;
+    padding: 14px;
+    font-size: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even){
+    background: #f2f2f2;
+}
+
+/* DESKTOP */
+
+@media (min-width: 768px){
+    body{
+        padding: 20px;
     }
-
+    nav a{
+        display: inline;
+        margin: 0 10px;
+    }
+    .container{
+        max-width: 700px;
+        margin: auto;
+        padding: 20px;
+    }
+    button{
+        width: auto;
+        padding: 12px 20px;
+    }
+    th, td{
+        font-size: 16px;
+        padding: 12px;
+    }
 }

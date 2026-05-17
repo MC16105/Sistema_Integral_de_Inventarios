@@ -1,55 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>CRUD Historial Precios</title>
-
+    <title>Historial de Precios</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
+<nav>
+    <a href="proveedores.html">
+        PROVEEDORES
+    </a>
+    <a href="historialprecios.html">
+        HISTORIAL
+    </a>
+    <a href="productos.html">
+        PRODUCTOS
+    </a>
+</nav>
+<div class="container">
+    <h1>Historial de Precios</h1>
+    <p> Gestión del historial de cambios de precios </p>
+    <input
+        type="text"
+        id="producto"
+        placeholder="Ingrese producto"
+        required >
+    <input
+        type="number"
+        id="precioAnterior"
+        placeholder="Precio anterior"
+        required >
+    <input
+        type="number"
+        id="precioNuevo"
+        placeholder="Precio nuevo"
+        required >
+    <input
+        type="date"
+        id="fecha"
+        required >
+    <button onclick="agregarHistorial()">
+        Guardar
+    </button>
 
-    <div class="container">
-
-        <h1>CRUD Historial Precios</h1>
-
-        <input type="text" id="producto"
-            placeholder="Producto">
-
-        <input type="number" id="precioAnterior"
-            placeholder="Precio anterior">
-
-        <input type="number" id="precioNuevo"
-            placeholder="Precio nuevo">
-
-        <input type="date" id="fecha">
-
-        <button onclick="agregarHistorial()">
-            Guardar
-        </button>
-
-        <table>
-
-            <thead>
-                <tr>
-                    <th>Producto</th>
-                    <th>Precio anterior</th>
-                    <th>Precio nuevo</th>
-                    <th>Fecha</th>
-                    <th>Acción</th>
-                </tr>
-            </thead>
-
-            <tbody id="tablaHistorial"></tbody>
-
-        </table>
-
-    </div>
-
-    <script src="script.js"></script>
-
+    <div class="table-container">
+    <table>
+        <thead>
+        <tr>
+            <th>Producto</th>
+            <th>Precio anterior</th>
+            <th>Precio nuevo</th>
+            <th>Fecha</th>
+            <th>Acción</th>
+        </tr>
+        </thead>
+        <tbody id="tablaHistorial">
+        </tbody>
+    </table>
+     </div>
+</div>
+<script src="script.js"></script>
 </body>
 </html>

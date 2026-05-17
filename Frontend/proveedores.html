@@ -3,44 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRUD Proveedores</title>
-
+    <title>Gestión de Proveedores</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-
+<nav>
+    <a href="proveedores.html">
+        PROVEEDORES
+    </a>
+    <a href="historialprecios.html">
+        HISTORIAL
+    </a>
+    <a href="productos.html">
+        PRODUCTOS
+    </a>
+</nav>
 <div class="container">
-
-    <h1>CRUD Proveedores</h1>
-
-    <input type="text" id="nombreProveedor" placeholder="Nombre proveedor">
-
-    <input type="text" id="telefonoProveedor" placeholder="Teléfono">
-
+    <h1>Gestión de Proveedores</h1>
+    <p> Administración de proveedores del sistema </p>
+    <input
+        type="text"
+        id="nombreProveedor"
+        placeholder="Ingrese nombre del proveedor"
+        required >
+    <input
+        type="text"
+        id="telefonoProveedor"
+        placeholder="Ingrese teléfono"
+        required >
     <button onclick="agregarProveedor()">
         Guardar
     </button>
-
+    <div class="table-container">
     <table>
-
         <thead>
-            <tr>
-                <th>Proveedor</th>
-                <th>Teléfono</th>
-                <th>Acción</th>
-            </tr>
+        <tr>
+            <th>Proveedor</th>
+            <th>Teléfono</th>
+            <th>Acción</th>
+        </tr>
         </thead>
-
         <tbody id="tablaProveedores">
-
         </tbody>
-
     </table>
-
+    </div>
 </div>
-
 <script src="script.js"></script>
-
 </body>
 </html>
