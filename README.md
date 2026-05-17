@@ -299,3 +299,27 @@ Los archivos se encuentran en el directorio /Frontend del repositorio:
 
 El flujo de datos simulado en esta etapa es:
 Formulario (UI) -> Validación JS -> Manipulación del DOM -> Renderizado en Tabla
+
+## 🎨 Desarrollo de la Capa Frontend (Interfaz de Usuario)
+
+Se diseñó e implementó un sistema de diseño visual cohesivo, responsivo y moderno para la gestión del inventario, utilizando HTML5, CSS3 y JavaScript (Vanilla JS). El frontend cuenta con una barra de navegación unificada que permite el intercambio fluido entre los diferentes módulos operativos del sistema.
+
+### Módulos Desarrollados:
+
+1. Gestión de Proveedores (`proveedores.html`)
+   - Formulario adaptativo para el registro de nuevos proveedores con captura de campos clave: *Nombre del Proveedor* y *Teléfono*.
+   - Tabla dinámica con acciones de control y validación de campos obligatorios directamente en el cliente.
+
+2. Gestión de Productos (`productos.html`)
+   - Interfaz completa para la administración del catálogo de inventario.
+   - Campos integrados y alineados a las reglas del Backend: *Código, Nombre del Producto, Precio, Stock* y *Descripción*.
+   - Estructura de tabla preparada para renderizar de forma asíncrona la data del controlador.
+
+3. Historial de Precios (`historialprecios.html`)
+   - Módulo especializado para el rastreo y auditoría de cambios en los costos de los productos.
+   - Formulario de captura para: *Identificador de Producto, Precio Anterior, Precio Nuevo* y *Fecha de Modificación*.
+
+### Características Técnicas del Frontend:
+- Diseño Limpio y Profesional: Uso de paleta de colores corporativa (azul oscuro/blanco) con tipografías legibles y espaciados optimizados para la concentración del usuario.
+- Validaciones Nativas: Implementación de alertas de obligatoriedad en campos críticos antes de procesar los datos de los formularios.
+- Arquitectura Escalable: Estructura de carpetas (`/Frontend`) separada e independiente para facilitar la futura conexión vía Fetch API con los controladores de Spring Boot.
