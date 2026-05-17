@@ -24,7 +24,7 @@ La estructura de este proyecto se basa en la arquitectura N Capas (N-Tier), de m
 
 - controller/ -> Manejo de Endpoint HTTP
 - service/ -> Logica de negocio
-- repository/ -> Acceso a datos con JPS
+- repository/ -> Acceso a datos con JPA 
 - entity/ -> Representacion de la Tabla en la DB
 - dto/ -> Transferencia de datos entre capas
 - config/ 
@@ -44,7 +44,7 @@ Se añadieron validaciones para garantizar la integridad de los datos
 - @NotNull -> Campo obligatorio
 - @Min -> No permite valores negativos
 - @Max -> Límite máximo permitido
-- @Digists->Control de Formato decimal
+- @Digits->Control de Formato decimal
 
 ## Normalización de datos
 
@@ -146,7 +146,7 @@ Flujo típico en un proyecto:
 ___________________________________________________________
 | Spring Security     | JWT                               |
 |---------------------|-----------------------------------|
-| Protege Endpoint    | Identifica al Usaurio             |
+| Protege Endpoint    | Identifica al Usuario             |
 | Controla Acceso     | Prueba que el usuario es Valido   |
 | Filtra Request 	    | Proporciona el Token de Identidad |
 
@@ -286,3 +286,16 @@ Flujo completo del sistema
 - Frontend guarda token
 - Cada request pasa por JwtFilter
 - SecurityConfig decide si permite o no acceso
+
+
+## Configuración y Estructura del Frontend
+
+La interfaz de usuario está desarrollada bajo el enfoque Mobile First, garantizando una experiencia fluida y responsiva en dispositivos móviles y de escritorio. Se utiliza maquetación limpia en HTML5, estilos avanzados en CSS3 y manipulación dinámica del DOM mediante JavaScript nativo (Vanilla JS).
+
+Los archivos se encuentran en el directorio /Frontend del repositorio:
+- proveedores.html: Estructura del formulario de gestión y tabla de visualización con los 5 campos alineados al DTO.
+- script.js: Lógica de captura de datos, validaciones en cliente (simulación de `@NotBlank`) y renderizado dinámico de filas.
+- styles.css: Estilos responsivos y diseño adaptativo.
+
+El flujo de datos simulado en esta etapa es:
+Formulario (UI) -> Validación JS -> Manipulación del DOM -> Renderizado en Tabla
