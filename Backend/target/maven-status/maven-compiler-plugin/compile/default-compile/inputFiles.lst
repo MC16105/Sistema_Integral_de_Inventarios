@@ -4,6 +4,7 @@
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/config/SecurityConfig.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/CategoriaController.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/CompraController.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/HistorialPreciosController.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/InventarioController.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/ProductoController.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/controller/ProveedorController.java
@@ -14,6 +15,7 @@
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/CompraDTO.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/DetalleCompraDTO.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/DetalleVentaDTO.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/HistorialPreciosDTO.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/InventarioDTO.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/ProductoDTO.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/dto/ProveedorDTO.java
@@ -25,6 +27,7 @@
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/Compra.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/DetalleCompra.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/DetalleVenta.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/HistorialPrecios.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/Inventario.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/Producto.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/entity/Proveedor.java
@@ -34,6 +37,7 @@
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/exception/GlobalExceptionHandler.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/CategoriaRepository.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/CompraRepository.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/HistorialPreciosRepository.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/InventarioRepository.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/ProductoRepository.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/ProveedorRepository.java
@@ -41,6 +45,7 @@
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/repository/VentaRepository.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/CategoriaService.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/CompraService.java
+/home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/HistorialPreciosService.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/InventarioService.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/ProductoService.java
 /home/mc16105/Escritorio/Sistema_Integral_de_Inventarios/Backend/src/main/java/edu/ues/sii/inventory_system/service/ProveedorService.java

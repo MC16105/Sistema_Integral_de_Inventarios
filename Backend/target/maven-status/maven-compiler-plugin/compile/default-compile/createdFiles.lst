@@ -1,7 +1,9 @@
 edu/ues/sii/inventory_system/repository/CompraRepository.class
+edu/ues/sii/inventory_system/repository/HistorialPreciosRepository.class
 edu/ues/sii/inventory_system/dto/UsuarioDTO.class
 edu/ues/sii/inventory_system/entity/Producto.class
 edu/ues/sii/inventory_system/service/UsuarioService.class
+edu/ues/sii/inventory_system/controller/HistorialPreciosController.class
 edu/ues/sii/inventory_system/controller/InventarioController.class
 edu/ues/sii/inventory_system/controller/CategoriaController.class
 edu/ues/sii/inventory_system/config/OpenAPIConfig.class
@@ -13,6 +15,7 @@ edu/ues/sii/inventory_system/controller/VentaController.class
 edu/ues/sii/inventory_system/dto/CompraCreateDTO.class
 edu/ues/sii/inventory_system/repository/VentaRepository.class
 edu/ues/sii/inventory_system/dto/CompraDTO.class
+edu/ues/sii/inventory_system/service/HistorialPreciosService.class
 edu/ues/sii/inventory_system/entity/Usuario.class
 edu/ues/sii/inventory_system/dto/ProveedorDTO.class
 edu/ues/sii/inventory_system/entity/Categoria.class
@@ -32,6 +35,7 @@ edu/ues/sii/inventory_system/exception/GlobalExceptionHandler.class
 edu/ues/sii/inventory_system/service/InventarioService.class
 edu/ues/sii/inventory_system/repository/CategoriaRepository.class
 edu/ues/sii/inventory_system/entity/DetalleVenta.class
+edu/ues/sii/inventory_system/dto/HistorialPreciosDTO.class
 edu/ues/sii/inventory_system/repository/UsuarioRepository.class
 edu/ues/sii/inventory_system/service/CategoriaService.class
 edu/ues/sii/inventory_system/entity/Venta.class
@@ -40,6 +44,7 @@ edu/ues/sii/inventory_system/entity/Compra.class
 edu/ues/sii/inventory_system/entity/Role.class
 edu/ues/sii/inventory_system/dto/DetalleVentaDTO.class
 edu/ues/sii/inventory_system/entity/Inventario.class
+edu/ues/sii/inventory_system/entity/HistorialPrecios.class
 edu/ues/sii/inventory_system/service/CompraService.class
 edu/ues/sii/inventory_system/dto/CategoriaDTO.class
 edu/ues/sii/inventory_system/dto/InventarioDTO.class
