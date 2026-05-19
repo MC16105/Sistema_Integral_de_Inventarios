@@ -7,9 +7,12 @@ edu/ues/sii/inventory_system/controller/HistorialPreciosController.class
 edu/ues/sii/inventory_system/controller/InventarioController.class
 edu/ues/sii/inventory_system/controller/CategoriaController.class
 edu/ues/sii/inventory_system/config/OpenAPIConfig.class
+edu/ues/sii/inventory_system/controller/TransaccionController.class
+edu/ues/sii/inventory_system/entity/Transaccion.class
 edu/ues/sii/inventory_system/dto/VentaCreateDTO.class
 edu/ues/sii/inventory_system/service/ProveedorService.class
 edu/ues/sii/inventory_system/entity/DetalleCompra.class
+edu/ues/sii/inventory_system/service/TransaccionService.class
 edu/ues/sii/inventory_system/dto/UsuarioCreateDTO.class
 edu/ues/sii/inventory_system/controller/VentaController.class
 edu/ues/sii/inventory_system/dto/CompraCreateDTO.class
@@ -17,6 +20,7 @@ edu/ues/sii/inventory_system/repository/VentaRepository.class
 edu/ues/sii/inventory_system/dto/CompraDTO.class
 edu/ues/sii/inventory_system/service/HistorialPreciosService.class
 edu/ues/sii/inventory_system/entity/Usuario.class
+edu/ues/sii/inventory_system/dto/TransaccionDTO.class
 edu/ues/sii/inventory_system/dto/ProveedorDTO.class
 edu/ues/sii/inventory_system/entity/Categoria.class
 edu/ues/sii/inventory_system/dto/ProductoDTO.class
@@ -28,6 +32,7 @@ edu/ues/sii/inventory_system/service/ProductoService.class
 edu/ues/sii/inventory_system/controller/ProveedorController.class
 edu/ues/sii/inventory_system/InventorySystemApplication.class
 edu/ues/sii/inventory_system/controller/ProductoController.class
+edu/ues/sii/inventory_system/repository/TransaccionRepository.class
 edu/ues/sii/inventory_system/dto/VentaDTO.class
 edu/ues/sii/inventory_system/repository/ProveedorRepository.class
 edu/ues/sii/inventory_system/config/SecurityConfig.class
