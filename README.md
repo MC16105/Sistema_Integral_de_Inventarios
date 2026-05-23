@@ -322,4 +322,4 @@ Se diseñó e implementó un sistema de diseño visual cohesivo, responsivo y mo
 ### Características Técnicas del Frontend:
 - Diseño Limpio y Profesional: Uso de paleta de colores corporativa (azul oscuro/blanco) con tipografías legibles y espaciados optimizados para la concentración del usuario.
 - Validaciones Nativas: Implementación de alertas de obligatoriedad en campos críticos antes de procesar los datos de los formularios.
-- Arquitectura Escalable: Estructura de carpetas (`/Frontend`) separada e independiente para facilitar la futura conexión vía Fetch API con los controladores de Spring Boot.
+- Arquitectura Escalable: Estructura de carpetas (`/Frontend`) separada e independiente para facilitar la futura conexión vía Fetch API con los controladores de Spring Boot.ñ
