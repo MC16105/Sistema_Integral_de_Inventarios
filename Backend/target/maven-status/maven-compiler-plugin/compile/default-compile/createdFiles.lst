@@ -1,5 +1,6 @@
 edu/ues/sii/inventory_system/repository/CompraRepository.class
 edu/ues/sii/inventory_system/repository/HistorialPreciosRepository.class
+edu/ues/sii/inventory_system/repository/AjusteInventarioRepository.class
 edu/ues/sii/inventory_system/dto/UsuarioDTO.class
 edu/ues/sii/inventory_system/entity/Producto.class
 edu/ues/sii/inventory_system/service/UsuarioService.class
@@ -16,9 +17,13 @@ edu/ues/sii/inventory_system/service/TransaccionService.class
 edu/ues/sii/inventory_system/dto/UsuarioCreateDTO.class
 edu/ues/sii/inventory_system/controller/VentaController.class
 edu/ues/sii/inventory_system/dto/CompraCreateDTO.class
+edu/ues/sii/inventory_system/repository/MovimientoInventarioRepository.class
 edu/ues/sii/inventory_system/repository/VentaRepository.class
 edu/ues/sii/inventory_system/dto/CompraDTO.class
+edu/ues/sii/inventory_system/service/MovimientoInventarioService.class
 edu/ues/sii/inventory_system/service/HistorialPreciosService.class
+edu/ues/sii/inventory_system/dto/AjusteInventarioDTO.class
+edu/ues/sii/inventory_system/entity/MovimientoInventario.class
 edu/ues/sii/inventory_system/entity/Usuario.class
 edu/ues/sii/inventory_system/dto/TransaccionDTO.class
 edu/ues/sii/inventory_system/dto/ProveedorDTO.class
@@ -28,6 +33,7 @@ edu/ues/sii/inventory_system/controller/CompraController.class
 edu/ues/sii/inventory_system/entity/Proveedor.class
 edu/ues/sii/inventory_system/dto/DetalleCompraDTO.class
 edu/ues/sii/inventory_system/repository/InventarioRepository.class
+edu/ues/sii/inventory_system/service/AjusteInventarioService.class
 edu/ues/sii/inventory_system/service/ProductoService.class
 edu/ues/sii/inventory_system/controller/ProveedorController.class
 edu/ues/sii/inventory_system/InventorySystemApplication.class
@@ -51,8 +57,12 @@ edu/ues/sii/inventory_system/dto/DetalleVentaDTO.class
 edu/ues/sii/inventory_system/entity/Inventario.class
 edu/ues/sii/inventory_system/entity/HistorialPrecios.class
 edu/ues/sii/inventory_system/service/CompraService.class
+edu/ues/sii/inventory_system/entity/AjusteInventario.class
+edu/ues/sii/inventory_system/controller/MovimientoInventarioController.class
 edu/ues/sii/inventory_system/dto/CategoriaDTO.class
 edu/ues/sii/inventory_system/dto/InventarioDTO.class
 edu/ues/sii/inventory_system/service/VentaService.class
 edu/ues/sii/inventory_system/controller/UsuarioController.class
+edu/ues/sii/inventory_system/controller/AjusteInventarioController.class
+edu/ues/sii/inventory_system/dto/MovimientoInventarioDTO.class
 edu/ues/sii/inventory_system/config/SecurityBeansConfig.class

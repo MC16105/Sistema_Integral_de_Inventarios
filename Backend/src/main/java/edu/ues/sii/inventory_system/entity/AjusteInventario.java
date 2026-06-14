@@ -1,5 +1,6 @@
 package edu.ues.sii.inventory_system.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -20,35 +21,54 @@ public class AjusteInventario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "producto_id", nullable = false)
-    private Producto producto;
-
-    @Column(name = "tipo_ajuste", nullable = false, length = 50)
-    private String tipoAjuste; // "INCREMENTO", "DISMINUCION"
-
     @Column(nullable = false)
-    private Integer cantidad;
+    private Integer cantidadAjustada;
 
     @Column(nullable = false, length = 255)
-    private String motivo;
+    private String motivoAjuste;
 
-    @Column(name = "fecha_ajuste", nullable = false)
-    private LocalDateTime fechaAjuste;
+    @Column(nullable = false)
+    private LocalDate fechaAjuste;
 
-    public AjusteInventario() {}
+    @ManyToOne
+    @JoinColumn(name = "producto_id")
+    private Producto producto;
 
-    // Getters y Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public Producto getProducto() { return producto; }
-    public void setProducto(Producto producto) { this.producto = producto; }
-    public String getTipoAjuste() { return tipoAjuste; }
-    public void setTipoAjuste(String tipoAjuste) { this.tipoAjuste = tipoAjuste; }
-    public Integer getCantidad() { return cantidad; }
-    public void setCantidad(Integer cantidad) { this.cantidad = cantidad; }
-    public String getMotivo() { return motivo; }
-    public void setMotivo(String motivo) { this.motivo = motivo; }
-    public LocalDateTime getFechaAjuste() { return fechaAjuste; }
-    public void setFechaAjuste(LocalDateTime fechaAjuste) { this.fechaAjuste = fechaAjuste; }
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+
+    public AjusteInventario() { }
+
+    // GETTERS Y SETTERS
+
+    public Long getId() {
+        return id;
+    }
+
+    public Integer getCantidadAjustada() {
+        return cantidadAjustada; }
+    public void setCantidadAjustada(Integer cantidadAjustada) {
+        this.cantidadAjustada = cantidadAjustada; }
+
+    public String getMotivoAjuste() {
+        return motivoAjuste; }
+    public void setMotivoAjuste(String motivoAjuste) {
+        this.motivoAjuste = motivoAjuste; }
+
+    public LocalDate getFechaAjuste() {
+        return fechaAjuste; }
+    public void setFechaAjuste(LocalDate fechaAjuste) {
+        this.fechaAjuste = fechaAjuste; }
+
+    public Producto getProducto() {
+        return producto; }
+    public void setProducto(Producto producto) {
+        this.producto = producto; }
+
+    public Usuario getUsuario() {
+        return usuario; }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario; }
 }
