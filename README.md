@@ -104,27 +104,6 @@ Se lanza cuando fallan validaciones como:
 - Centraliza manejo de errores
 - Escalable (puedes agregar más excepciones)
 
-En resumen: Es la respuesta del login al frontend.
-
-- Role enum, ¿Qué es?
-Es una enumeración de roles de usuario.
-
-¿Para qué sirve?
-Define los permisos del sistema.
-
-Ejemplo:
-
-public enum Role {
-    USER,
-    ADMIN
-}
-
-Uso:
-- Control de acceso
-- Autorización en endpoints
-
-Ejemplo: @PreAuthorize("hasRole('ADMIN')")
-
 ## Configuración y Estructura del Frontend
 
 La interfaz de usuario está desarrollada bajo el enfoque Mobile First, garantizando una experiencia fluida y responsiva en dispositivos móviles y de escritorio. Se utiliza maquetación limpia en HTML5, estilos avanzados en CSS3 y manipulación dinámica del DOM mediante JavaScript nativo (Vanilla JS).
