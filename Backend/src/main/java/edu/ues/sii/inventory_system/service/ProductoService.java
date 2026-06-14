@@ -1,6 +1,10 @@
 package edu.ues.sii.inventory_system.service;
 
 import java.util.List;
+
+import edu.ues.sii.inventory_system.repository.CategoriaRepository;
+import edu.ues.sii.inventory_system.repository.ProveedorRepository;
+import edu.ues.sii.inventory_system.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 import edu.ues.sii.inventory_system.dto.ProductoDTO;
 import edu.ues.sii.inventory_system.entity.Producto;
@@ -10,9 +14,16 @@ import edu.ues.sii.inventory_system.repository.ProductoRepository;
 public class ProductoService {
 
     private final ProductoRepository repo;
+    private final ProveedorRepository proveedorRepo;
+    private final UsuarioRepository usuarioRepo;
+    private final CategoriaRepository categoriaRepo;
 
-    public ProductoService(ProductoRepository repo) {
-        this.repo = repo; }
+    public ProductoService(ProductoRepository repo, ProveedorRepository proveedorRepo, UsuarioRepository usuarioRepo, CategoriaRepository categoriaRepo) {
+        this.repo = repo;
+        this.proveedorRepo = proveedorRepo;
+        this.usuarioRepo = usuarioRepo;
+        this.categoriaRepo = categoriaRepo;
+    }
 
     public List<ProductoDTO> listar() {
         return repo.findAll()
@@ -46,11 +57,39 @@ public class ProductoService {
         dto.setPrecio(p.getPrecio());
         dto.setStock(p.getStock());
         dto.setDescripcion(p.getDescripcion());
+
+        if(p.getProveedor() != null){
+            dto.setProveedorId(p.getProveedor().getId()); }
+
+        if(p.getUsuario() != null){
+            dto.setUsuarioId(p.getUsuario().getId()); }
+
+        if(p.getCategoria() != null){
+            dto.setCategoriaId(p.getCategoria().getId());}
+
         return dto; }
 
     private void mapToEntity(ProductoDTO dto, Producto p) {
         p.setNombre(dto.getNombre());
         p.setPrecio(dto.getPrecio());
         p.setStock(dto.getStock());
-        p.setDescripcion(dto.getDescripcion()); }
+        p.setDescripcion(dto.getDescripcion());
+
+        if(dto.getProveedorId() != null){
+            p.setProveedor(proveedorRepo.findById(dto.getProveedorId())
+                            .orElseThrow(() -> new RuntimeException("Proveedor no encontrado"))
+            );
+        }
+
+        if(dto.getUsuarioId() != null){
+            p.setUsuario(usuarioRepo.findById(dto.getUsuarioId())
+                            .orElseThrow(() -> new RuntimeException("Usuario no encontrado"))
+            );
+        }
+
+        if(dto.getCategoriaId() != null){
+            p.setCategoria(categoriaRepo.findById(dto.getCategoriaId())
+                            .orElseThrow(() -> new RuntimeException("Categoria no encontrada"))
+            );
+        }}
 }

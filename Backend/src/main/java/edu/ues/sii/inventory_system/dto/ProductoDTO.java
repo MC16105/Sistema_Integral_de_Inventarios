@@ -32,6 +32,15 @@ public class ProductoDTO {
     @Schema(example = "-")
     private String descripcion;
 
+    @NotNull(message = "El proveedor es obligatorio")
+    private Long proveedorId;
+
+    @NotNull(message = "El usuario es obligatorio")
+    private Long usuarioId;
+
+    @NotNull(message = "La categoría es obligatoria")
+    private Long categoriaId;
+
     //GETTER Y SETTER
 
     public Long getId() {
@@ -58,4 +67,19 @@ public class ProductoDTO {
         return descripcion; }
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion; }
+
+    public Long getProveedorId() {
+        return proveedorId; }
+    public void setProveedorId(Long proveedorId) {
+        this.proveedorId = proveedorId; }
+
+    public Long getUsuarioId() {
+        return usuarioId; }
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId; }
+
+    public Long getCategoriaId() {
+        return categoriaId; }
+    public void setCategoriaId(Long categoriaId) {
+        this.categoriaId = categoriaId; }
 }
