@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import edu.ues.sii.inventory_system.dto.ProductoDTO;
 import edu.ues.sii.inventory_system.service.ProductoService;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/productos")
 @Tag(name = "Productos", description = "Gestión de productos")
