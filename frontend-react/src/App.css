@@ -1,79 +1,443 @@
+/* --- Estilos Generales --- */
 body {
     margin: 0;
-    background: #f4f6f9;
-    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    /* Gris más sutil y moderno */
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
 }
 
 .container {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 0 20px;
 }
 
-h1 {
-    text-align: center;
-}
-
-.formulario {
+/* --- Encabezado --- */
+.header-seccion {
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
 }
 
-.formulario input {
-    flex: 1;
-    min-width: 200px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+.header-seccion h2 {
+    font-size: 1.75rem;
+    color: #0f172a;
+    margin: 0;
+    font-weight: 700;
 }
 
-button {
+/* --- Tarjeta del Formulario Desplegable --- */
+.card-formulario {
     background: white;
-    color: #2563eb;
-    border: 2px solid #2563eb;
-    border-radius: 20px;
-    padding: 10px 16px;
-    cursor: pointer;
-    font-weight: bold;
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+    margin-bottom: 30px;
+    animation: slideDown 0.25s ease-out;
 }
 
-button:hover {
+.card-formulario h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #334155;
+    font-size: 1.2rem;
+}
+
+.formulario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.input-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.input-group label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #64748b;
+}
+
+.input-group input {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.formulario-acciones {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+/* --- Botones del Sistema --- */
+button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+}
+
+.btn-principal {
     background: #2563eb;
     color: white;
+}
+
+.btn-principal:hover {
+    background: #1d4ed8;
+}
+
+.btn-cancelar {
+    background: #64748b;
+}
+
+.btn-cancelar:hover {
+    background: #475569;
+}
+
+.btn-guardar {
+    background: #10b981;
+    color: white;
+    width: 100%;
+}
+
+@media(min-width: 640px) {
+    .btn-guardar {
+        width: auto;
+    }
+}
+
+.btn-guardar:hover {
+    background: #059669;
+}
+
+/* --- Tabla con Look de Dashboard --- */
+.tabla-contenedor {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background: white;
+    text-align: left;
 }
 
 th {
-    background: #2563eb;
-    color: white;
+    background: #f8fafc;
+    color: #475569;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 2px solid #e2e8f0;
 }
 
 th,
 td {
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-    text-align: center;
+    padding: 16px 20px;
+}
+
+td {
+    border-bottom: 1px solid #f1f5f9;
+    font-size: 0.95rem;
+    color: #334155;
+}
+
+tr:last-child td {
+    border-bottom: none;
 }
 
 tr:hover {
-    background: #f5f5f5;
+    background: #f8fafc;
 }
 
-@media(max-width:768px) {
+/* --- Componentes Internos de la Tabla --- */
+.text-bold {
+    font-weight: 600;
+    color: #0f172a;
+}
 
-    .formulario {
-        flex-direction: column;
+.text-precio {
+    font-weight: 600;
+    color: #059669;
+}
+
+.text-mutado {
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.tabla-vacia {
+    text-align: center;
+    color: #94a3b8;
+    padding: 40px;
+}
+
+.badge-id {
+    background: #f1f5f9;
+    color: #64748b;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-family: monospace;
+}
+
+.badge-stock {
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.stock-ok {
+    background: #d1fae5;
+    color: #065f46;
+}
+
+.stock-bajo {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* Botones de acción dentro de la tabla */
+.tabla-acciones {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-accion {
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.btn-editar {
+    background: #eff6ff;
+    color: #2563eb;
+}
+
+.btn-editar:hover {
+    background: #2563eb;
+    color: white;
+}
+
+.btn-eliminar {
+    background: #fef2f2;
+    color: #ef4444;
+}
+
+.btn-eliminar:hover {
+    background: #ef4444;
+    color: white;
+}
+
+/* --- Animaciones --- */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
     }
 
-    table {
-        font-size: 14px;
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: slideDown 0.3s ease-out;
+}
+
+/* --- Efecto Modal Flotante --- */
+
+/* El fondo oscuro que cubre toda la pantalla */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6); /* Color pizarra con transparencia */
+    backdrop-filter: blur(4px); /* Efecto de desenfoque muy pro en el fondo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Asegura que esté por encima de tablas y menús */
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Ajustes para la tarjeta cuando se vuelve modal */
+.card-formulario.modal-content {
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 0; /* Quitamos el margen ya que está flotando */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Animación con rebote sutil */
+}
+
+/* Encabezado del modal para poner la 'X' a la derecha */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.btn-cerrar-modal {
+    background: transparent;
+    color: #64748b;
+    padding: 6px;
+    font-size: 1.2rem;
+    border-radius: 50%;
+}
+
+.btn-cerrar-modal:hover {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
+/* --- Nuevas Animaciones --- */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.input-group input, 
+.input-group select {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    outline: none;
+    background-color: white; /* Evita que el navegador le ponga el gris feo por defecto */
+}
+
+.input-group select:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* --- Interfaz Estética de Login desde Cero --- */
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100vw;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    /* Fondo premium oscuro */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.login-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+    box-sizing: border-box;
+    animation: loginFadeUp 0.4s ease-out;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.login-header h2 {
+    margin: 0 0 6px 0;
+    color: #0f172a;
+    font-size: 1.6rem;
+    font-weight: 700;
+}
+
+.login-header p {
+    margin: 0;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.btn-login-submit {
+    width: 100%;
+    padding: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 8px;
+}
+
+.btn-login-submit:hover {
+    background: #1d4ed8;
+}
+
+.btn-login-submit:disabled {
+    background: #94a3b8;
+    cursor: not-allowed;
+}
+
+@keyframes loginFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
     }
 
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
