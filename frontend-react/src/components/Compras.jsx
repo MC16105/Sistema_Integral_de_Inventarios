@@ -8,9 +8,16 @@ import {
   eliminarCompra
 } from "../services/compraService";
 
-function Compras() {
+import { obtenerProductos } from "../services/productoService";
+import { obtenerProveedores } from "../services/proveedorService";
+import { obtenerUsuarios } from "../services/usuarioService";
 
+function Compras() {
   const [compras, setCompras] = useState([]);
+
+  const [productos, setProductos] = useState([]);
+  const [proveedores, setProveedores] = useState([]);
+  const [usuarios, setUsuarios] = useState([]);
 
   const [proveedorId, setProveedorId] = useState("");
   const [usuarioId, setUsuarioId] = useState("");
@@ -20,6 +27,7 @@ function Compras() {
 
   useEffect(() => {
     cargarCompras();
+    cargarDatos();
   }, []);
 
   const cargarCompras = async () => {
@@ -32,9 +40,23 @@ function Compras() {
     }
   };
 
+  const cargarDatos = async () => {
+    try {
+      const productosData = await obtenerProductos();
+      const proveedoresData = await obtenerProveedores();
+      const usuariosData = await obtenerUsuarios();
+
+      setProductos(productosData);
+      setProveedores(proveedoresData);
+      setUsuarios(usuariosData);
+    } catch (error) {
+      console.error(error);
+      toast.error("Error al cargar datos");
+    }
+  };
+
   const guardarCompra = async () => {
     try {
-
       const compra = {
         proveedorId: Number(proveedorId),
         usuarioId: Number(usuarioId),
@@ -58,7 +80,6 @@ function Compras() {
       setPrecioUnitario("");
 
       cargarCompras();
-
     } catch (error) {
       console.error(error);
       toast.error("Error al registrar compra");
@@ -72,7 +93,6 @@ function Compras() {
       toast.success("Compra eliminada");
 
       cargarCompras();
-
     } catch (error) {
       console.error(error);
       toast.error("Error al eliminar compra");
@@ -80,100 +100,162 @@ function Compras() {
   };
 
   return (
-    <div>
-
+    <div className="animate-fade-in">
       <ToastContainer />
 
-      <h2>Gestión de Compras</h2>
-
-      <div style={{ marginBottom: "20px" }}>
-
-        <input
-          type="number"
-          placeholder="Proveedor ID"
-          value={proveedorId}
-          onChange={(e) => setProveedorId(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="Usuario ID"
-          value={usuarioId}
-          onChange={(e) => setUsuarioId(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="Producto ID"
-          value={productoId}
-          onChange={(e) => setProductoId(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="Cantidad"
-          value={cantidad}
-          onChange={(e) => setCantidad(e.target.value)}
-        />
-
-        <input
-          type="number"
-          placeholder="Precio Unitario"
-          value={precioUnitario}
-          onChange={(e) => setPrecioUnitario(e.target.value)}
-        />
-
-        <button onClick={guardarCompra}>
-          Guardar Compra
-        </button>
-
+      <div className="header-seccion">
+        <h2>Gestión de Compras</h2>
       </div>
 
-      <table border="1" width="100%">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Fecha</th>
-            <th>Total</th>
-            <th>Proveedor</th>
-            <th>Usuario</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
+      <div className="card-formulario">
+        <div className="formulario-grid">
 
-        <tbody>
+          <div className="input-group">
+            <label>Proveedor</label>
+            <select
+              value={proveedorId}
+              onChange={(e) => setProveedorId(e.target.value)}
+            >
+              <option value="">Seleccione proveedor</option>
 
-          {compras.length === 0 ? (
+              {proveedores.map((proveedor) => (
+                <option
+                  key={proveedor.id}
+                  value={proveedor.id}
+                >
+                  {proveedor.nombre}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="input-group">
+            <label>Usuario</label>
+            <select
+              value={usuarioId}
+              onChange={(e) => setUsuarioId(e.target.value)}
+            >
+              <option value="">Seleccione usuario</option>
+
+              {usuarios.map((usuario) => (
+                <option
+                  key={usuario.id}
+                  value={usuario.id}
+                >
+                  {usuario.username}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="input-group">
+            <label>Producto</label>
+            <select
+              value={productoId}
+              onChange={(e) => setProductoId(e.target.value)}
+            >
+              <option value="">Seleccione producto</option>
+
+              {productos.map((producto) => (
+                <option
+                  key={producto.id}
+                  value={producto.id}
+                >
+                  {producto.nombre}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="input-group">
+            <label>Cantidad</label>
+            <input
+              type="number"
+              value={cantidad}
+              onChange={(e) => setCantidad(e.target.value)}
+            />
+          </div>
+
+          <div className="input-group">
+            <label>Precio Unitario</label>
+            <input
+              type="number"
+              value={precioUnitario}
+              onChange={(e) => setPrecioUnitario(e.target.value)}
+            />
+          </div>
+
+        </div>
+
+        <div className="formulario-acciones">
+          <button
+            className="btn-guardar"
+            onClick={guardarCompra}
+          >
+            Guardar Compra
+          </button>
+        </div>
+      </div>
+
+      <div className="tabla-contenedor">
+        <table>
+          <thead>
             <tr>
-              <td colSpan="6">
-                No hay compras registradas
-              </td>
+              <th>ID</th>
+              <th>Fecha</th>
+              <th>Total</th>
+              <th>Proveedor</th>
+              <th>Usuario</th>
+              <th>Acciones</th>
             </tr>
-          ) : (
-            compras.map((compra) => (
-              <tr key={compra.id}>
-                <td>{compra.id}</td>
-                <td>{compra.fechaCompra}</td>
-                <td>${compra.montoTotal}</td>
-                <td>{compra.proveedorId}</td>
-                <td>{compra.usuarioId}</td>
+          </thead>
 
-                <td>
-                  <button
-                    onClick={() => borrarCompra(compra.id)}
-                  >
-                    Eliminar
-                  </button>
+          <tbody>
+            {compras.length === 0 ? (
+              <tr>
+                <td colSpan="6" className="tabla-vacia">
+                  No hay compras registradas
                 </td>
               </tr>
-            ))
-          )}
+            ) : (
+              compras.map((compra) => (
+                <tr key={compra.id}>
+                  <td>
+                    <span className="badge-id">
+                      #{compra.id}
+                    </span>
+                  </td>
 
-        </tbody>
-      </table>
+                  <td>{compra.fechaCompra}</td>
 
+                  <td className="text-precio">
+                    ${compra.montoTotal}
+                  </td>
+
+                  <td>{compra.proveedorId}</td>
+
+                  <td>{compra.usuarioId}</td>
+
+                  <td>
+                    <div className="tabla-acciones">
+                      <button
+                        className="btn-accion btn-eliminar"
+                        onClick={() => borrarCompra(compra.id)}
+                      >
+                        🗑
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+
+        </table>
+      </div>
     </div>
   );
 }
 
 export default Compras;
+
