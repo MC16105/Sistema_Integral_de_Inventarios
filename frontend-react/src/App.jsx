@@ -1,9 +1,9 @@
 import Producto from "./components/Productos";
 import Compras from "./components/Compras";
+import Ventas from "./components/Ventas";
 import "./App.css";
 
 function App() {
-
   return (
     <div className="container">
 
@@ -11,6 +11,7 @@ function App() {
 
       <Producto />
       <Compras />
+      <Ventas />
 
     </div>
   );
