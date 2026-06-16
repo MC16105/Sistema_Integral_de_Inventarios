@@ -1,4 +1,5 @@
 import Producto from "./components/Productos";
+import Compras from "./components/Compras";
 import "./App.css";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <h1>Sistema Integral de Inventarios</h1>
 
       <Producto />
+      <Compras />
 
     </div>
   );
