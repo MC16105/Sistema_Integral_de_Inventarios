@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/transacciones")
 @Tag(name = "Transacciones", description = "Gestión de Registro de Transacciones")

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/movimientos")
 @Tag(name = "Movimientos Inventario", description = "Gestión de movimientos de inventario")

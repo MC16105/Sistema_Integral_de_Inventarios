@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/ajustes")
 @Tag(name = "Ajustes Inventario", description = "Gestión de ajustes de inventario")
