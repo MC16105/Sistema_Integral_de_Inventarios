@@ -162,10 +162,66 @@ Archivos Instalados en este Proyecto
 - npm install react-toastify
 - npm install react-router-dom
 
+## Docker
+##¿Por qué Docker para sistema?
 
+Para enviar una aplicación a un servidor o a la computadora de un compañero. Normalmente se tendría que instalar Java, configurar Maven, instalar Node.js, configurar PostgreSQL, crear las tablas, etc. Si algo falla en una versión, todo el sistema se rompe.
 
+Docker resuelve esto con "Contenedores":
 
+- Aislamiento total: Cada parte de tu sistema (Frontend, Backend, Base de Datos) vive en su propia "caja" con todo lo que necesita. No se pelean por los puertos ni por las versiones de las librerías.
+- Portabilidad: Si tu proyecto funciona en tu computadora, está garantizado que funcionará en cualquier otra computadora que tenga Docker instalado.
+- Gestión de Dependencias: El contenedor de backend-spring ya trae instalado Java, y el de frontend-react trae Node.js. No necesitas instalar nada de eso en tu sistema operativo principal.
 
+¿Cómo se comunican los 3 si están en contenedores separados?
+
+Esta es la parte mágica de docker-compose.yml. Al usar una red interna (como la que se creó en el proyecto sistema_network), los contenedores se comunican entre sí como si fueran servidores en una red local real.
+
+- db-postgres: Es el primero en arrancar. Escucha en su puerto interno 5432.
+- backend-spring: Se conecta a db-postgres usando el nombre del servicio como "host" (en lugar de localhost, usa el nombre db-postgres).
+- frontend-react: Consume los servicios del backend a través de la red de Docker.
+
+## ¿Por qué "mapeamos" puertos (8080:8080)?
+Solo hacemos esto con el backend y el frontend para que (desde el navegador en Windows/Linux) se pueda "tocar" el contenedor. La base de datos, por seguridad, a menudo ni siquiera necesita estar mapeada al exterior; solo el backend necesita hablar con ella.
+Resumen de tu arquitectura:
+
+- Frontend: Tu interfaz visual (Nginx + React).
+- Backend: La lógica de negocio (Java + Spring Boot).
+- DataBase: El almacén de datos (PostgreSQL).
+
+Al estar los tres orquestados por Docker, si mañana decides que tu base de datos necesita más memoria o que quieres cambiar de versión de Java, solo modificas el archivo docker-compose.yml, haces un docker compose up, y Docker se encarga de destruir lo viejo y levantar lo nuevo sin dejar basura en la computadora.
+
+## Guía de Comandos para el Proyecto
+
+Para que no tenger más problemas de "puertos ocupados" o contenedores que no aparecen, siempre usar estos comandos desde la carpeta raíz: 
+
+- ~/Escritorio/Sistema_Integral_de_Inventarios
+
+Para Arrancar (Iniciar el sistema)
+
+Si se quiere que todo corra en segundo plano:
+
+- docker compose up -d
+
+¿Por qué -d? Porque ejecuta todo en modo detached (segundo plano), liberando la terminal.
+
+Para Detener (Apagar el sistema)
+
+Cuando se termine de trabajar, hacer esto siempre. Es la clave para liberar puertos y evitar errores:
+
+- docker compose down
+
+¿Por qué down? Porque detiene los contenedores y libera la red y los puertos que estaban utilizando.
+
+Para Monitorear (Saber qué pasa)
+
+Ver si todo está activo:
+
+- docker ps
+
+Ver los logs (si algo falla o no conecta):
+
+- docker compose logs -f
 
 
 
