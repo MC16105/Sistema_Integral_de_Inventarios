@@ -3,12 +3,7 @@ import { FaTrash, FaEdit, FaPlus, FaSync, FaTimes } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-  obtenerProveedores,
-  crearProveedor,
-  actualizarProveedor,
-  eliminarProveedor
-} from "../services/proveedorService";
+import {obtenerProveedores, crearProveedor, actualizarProveedor, eliminarProveedor} from "../services/proveedorService";
 import "../App.css";
 
 function Proveedores() {
@@ -38,7 +33,7 @@ function Proveedores() {
       setProveedores(data);
     } catch (error) {
       console.error(error);
-      toast.error("Error al cargar los proveedores de la base de datos ❌");
+      toast.error("Error al cargar los proveedores de la base de datos");
     }
   };
 
@@ -61,11 +56,11 @@ function Proveedores() {
     try {
       if (idEditar) {
         await actualizarProveedor(idEditar, proveedor);
-        toast.success("¡Proveedor actualizado correctamente! 🚀");
+        toast.success("¡Proveedor actualizado correctamente!");
         setIdEditar(null);
       } else {
         await crearProveedor(proveedor);
-        toast.success("¡Proveedor registrado con éxito! 🎉");
+        toast.success("¡Proveedor registrado con éxito!");
       }
       limpiarFormulario();
       setMostrarFormulario(false); // Cierra el modal flotante
@@ -92,7 +87,7 @@ function Proveedores() {
 
     try {
       await eliminarProveedor(id);
-      toast.dark("Proveedor eliminado correctamente 🗑️");
+      toast.dark("Proveedor eliminado correctamente");
       cargarProveedores();
     } catch (error) {
       console.error(error);

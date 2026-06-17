@@ -3,13 +3,8 @@ import { FaTrash, FaEdit, FaPlus, FaSync, FaTimes, FaTags } from "react-icons/fa
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Reemplaza por la ruta real de tu servicio de Axios cuando lo crees
-import {
-    obtenerCategorias,
-    crearCategoria,
-    actualizarCategoria,
-    eliminarCategoria
-} from "../services/categoriaService";
+import {obtenerCategorias, crearCategoria, actualizarCategoria, eliminarCategoria} 
+from "../services/categoriaService";
 import "../App.css";
 
 function Categorias() {
@@ -41,17 +36,15 @@ function Categorias() {
             toast.warning("El nombre de la categoría es obligatorio (*)");
             return;
         }
-
         const categoria = { nombre, descripcion };
-
         try {
             if (idEditar) {
                 await actualizarCategoria(idEditar, categoria);
-                toast.success("¡Categoría actualizada con éxito! 🚀");
+                toast.success("¡Categoría actualizada con éxito!");
                 setIdEditar(null);
             } else {
                 await crearCategoria(categoria);
-                toast.success("¡Categoría registrada con éxito! 🎉");
+                toast.success("¡Categoría registrada con éxito!");
             }
             limpiarFormulario();
             setMostrarFormulario(false);
@@ -75,7 +68,7 @@ function Categorias() {
 
         try {
             await eliminarCategoria(id);
-            toast.dark("Categoría eliminada 🗑️");
+            toast.dark("Categoría eliminada️");
             cargarCategorias();
         } catch (error) {
             console.error(error);

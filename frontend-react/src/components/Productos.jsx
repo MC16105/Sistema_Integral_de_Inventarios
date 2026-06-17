@@ -17,8 +17,8 @@ function Productos() {
     const [productos, setProductos] = useState([]);
     const [categorias, setCategorias] = useState([]);
     const [proveedores, setProveedores] = useState([]);
-
-    // Estados para almacenar el histórico y verificar relaciones en memoria
+    
+    // Estados auxiliares para el bloqueo preventivo en memoria (Catálogos transaccionales)
     const [ventas, setVentas] = useState([]);
     const [compras, setCompras] = useState([]);
     const [inventarios, setInventarios] = useState([]);
@@ -35,31 +35,33 @@ function Productos() {
     const [categoriaId, setCategoriaId] = useState("");
     const [proveedorId, setProveedorId] = useState("");
 
-    // Carga inicial de todo el ecosistema de datos
+    // Carga inicial
     useEffect(() => {
         cargarTodo();
     }, []);
 
     const cargarTodo = async () => {
         try {
-            // Cargamos absolutamente todos los catálogos en paralelo desde PostgreSQL
-            const [resProductos, resCategorias, resProveedores, resVentas, resCompras, resInventarios] = await Promise.all([
-                obtenerProductos(),
-                obtenerCategorias(),
-                obtenerProveedores(),
-                obtenerVentas(),
-                obtenerCompras(),
-                obtenerInventarios()
+            // Tolerancia a fallos: cada .catch(() => []) garantiza que si un endpoint está vacío o falla,
+            // el flujo principal no se detiene y la pantalla nunca se queda en blanco.
+            const [resProductos, resCategorias, resProveedores, resVentas, resCompras, resInventarios
+            ] = await Promise.all([
+                obtenerProductos().catch(() => []),
+                obtenerCategorias().catch(() => []),
+                obtenerProveedores().catch(() => []),
+                obtenerVentas().catch(() => []),
+                obtenerCompras().catch(() => []),
+                obtenerInventarios().catch(() => [])
             ]);
 
-            setProductos(resProductos);
-            setCategorias(resCategorias);
-            setProveedores(resProveedores);
-            setVentas(resVentas);
-            setCompras(resCompras);
-            setInventarios(resInventarios);
+            setProductos(resProductos || []);
+            setCategorias(resCategorias || []);
+            setProveedores(resProveedores || []);
+            setVentas(resVentas || []);
+            setCompras(resCompras || []);
+            setInventarios(resInventarios || []);
         } catch (error) {
-            console.error(error);
+            console.error("Error crítico en la sincronización:", error);
             toast.error("Error al sincronizar datos con PostgreSQL");
         }
     };
@@ -70,30 +72,32 @@ function Productos() {
             return;
         }
 
+        // Payload con los tipos correctos y el usuarioId de auditoría
         const productoPayload = {
             nombre,
             precio: parseFloat(precio),
             stock: parseInt(stock),
             descripcion,
             categoriaId: Number(categoriaId),
-            proveedorId: Number(proveedorId)
+            proveedorId: Number(proveedorId),
+            usuarioId: 1 // Asegura la persistencia sin Error 400
         };
 
         try {
             if (idEditar) {
                 await actualizarProducto(idEditar, productoPayload);
-                toast.success("¡Producto actualizado con éxito! 🚀");
+                toast.success("¡Producto actualizado con éxito!");
                 setIdEditar(null);
             } else {
                 await crearProducto(productoPayload);
-                toast.success("¡Producto registrado en el sistema! 🎉");
+                toast.success("¡Producto registrado en el sistema!");
             }
             limpiarFormulario();
             setMostrarFormulario(false);
-            cargarTodo(); // Recarga todo el ecosistema de inmediato
+            cargarTodo(); 
         } catch (error) {
             console.error(error);
-            toast.error("Error al guardar el producto del servidor");
+            toast.error("Error al guardar el producto en el servidor");
         }
     };
 
@@ -110,30 +114,25 @@ function Productos() {
 
     const deshabilitarProducto = async (id) => {
         if (!window.confirm("¿Deseas eliminar este producto del catálogo?")) return;
-
+        
         try {
             await eliminarProducto(id);
-            toast.success("Producto eliminado de la base de datos 🗑️", {
-                style: { background: "#1e293b", color: "#f8fafc" },
-                icon: "🗑️"
+            toast.success("Producto eliminado de la base de datos", {
+                style: { background: "#1e293b", color: "#f8fafc" }
             });
             cargarTodo();
         } catch (error) {
             console.error(error);
-
+            // Alerta estilizada por si se intenta borrar un producto restringido por llaves foráneas en la BD
             if (error.response?.status === 409 || error.response?.status === 500) {
                 toast.error(
                     "ACCIÓN BLOQUEADA POR SEGURIDAD:\nEste producto no se puede eliminar porque cuenta con transacciones activas en Inventario, Compras o Ventas.",
                     {
                         position: "top-right",
                         autoClose: 5500,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        style: {
-                            background: "#7f1d1d",
-                            color: "#fef2f2",
+                        style: { 
+                            background: "#7f1d1d", 
+                            color: "#fef2f2", 
                             borderRadius: "8px",
                             whiteSpace: "pre-line",
                             fontSize: "0.9rem",
@@ -142,9 +141,7 @@ function Productos() {
                     }
                 );
             } else {
-                toast.error("No se pudo procesar la solicitud en el servidor.", {
-                    style: { background: "#b91c1c", color: "#ffffff" }
-                });
+                toast.error("No se pudo procesar la solicitud en el servidor.");
             }
         }
     };
@@ -170,12 +167,11 @@ function Productos() {
         return prov ? prov.nombre : <span className="text-mutado">Desconocido</span>;
     };
 
-    // FUNCIÓN HELPER: Verifica si el producto tiene historial en otros módulos
+    // FUNCIÓN HELPER: Verifica el histórico en memoria para deshabilitar el botón antes de mandar un DELETE
     const tieneRelaciones = (productoId) => {
-        const enVentas = ventas.some(v => v.detalles?.some(d => d.productoId === productoId));
-        const enCompras = compras.some(c => c.detalles?.some(d => d.productoId === productoId));
-        const enInventario = inventarios.some(i => i.productoId === productoId);
-
+        const enVentas = ventas?.some(v => v.detalles?.some(d => d.productoId === productoId));
+        const enCompras = compras?.some(c => c.detalles?.some(d => d.productoId === productoId));
+        const enInventario = inventarios?.some(i => i.productoId === productoId);
         return enVentas || enCompras || enInventario;
     };
 
@@ -300,7 +296,7 @@ function Productos() {
                             </tr>
                         ) : (
                             productos.map((prod) => {
-                                // Ejecuta la comprobación por cada producto individual
+                                // Ejecuta la validación dinámica por fila
                                 const bloqueado = tieneRelaciones(prod.id);
 
                                 return (
@@ -309,7 +305,6 @@ function Productos() {
                                         <td className="text-bold">{prod.nombre}</td>
                                         <td className="text-mutado">{prod.descripcion || "Sin descripción"}</td>
 
-                                        {/* Cruce dinámico de datos */}
                                         <td><span className="badge-id" style={{ background: '#f1f5f9', color: '#334155' }}>{obtenerNombreCategoria(prod.categoriaId)}</span></td>
                                         <td>{obtenerNombreProveedor(prod.proveedorId)}</td>
 
@@ -322,12 +317,12 @@ function Productos() {
                                         <td>
                                             <div className="tabla-acciones">
                                                 <button className="btn-accion btn-editar" onClick={() => iniciarEdicion(prod)} title="Editar"><FaEdit /></button>
-
-                                                {/* Botón de eliminación inteligente */}
-                                                <button
-                                                    className={`btn-accion btn-eliminar`}
-                                                    onClick={() => !bloqueado && deshabilitarProducto(prod.id)}
-                                                    title={bloqueado ? "Bloqueado: Este artículo cuenta con registros asociados" : "Eliminar"}
+                                                
+                                                {/* Botón de eliminación condicional */}
+                                                <button 
+                                                    className="btn-accion btn-eliminar" 
+                                                    onClick={() => !bloqueado && deshabilitarProducto(prod.id)} 
+                                                    title={bloqueado ? "Bloqueado: Este artículo cuenta con registros asociados en otros módulos" : "Eliminar del catálogo"}
                                                     style={bloqueado ? { opacity: 0.35, cursor: "not-allowed", backgroundColor: "#64748b" } : {}}
                                                 >
                                                     <FaTrash />

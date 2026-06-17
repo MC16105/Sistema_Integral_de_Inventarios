@@ -4,12 +4,8 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // Importación de servicios de Axios
-import {
-    obtenerInventarios,
-    crearInventario,
-    actualizarInventario,
-    eliminarInventario
-} from "../services/inventarioService";
+import {obtenerInventarios, crearInventario, actualizarInventario, eliminarInventario} 
+from "../services/inventarioService";
 import { obtenerProductos } from "../services/productoService";
 
 import "../App.css";
@@ -65,11 +61,11 @@ function Inventario() {
         try {
             if (idEditar) {
                 await actualizarInventario(idEditar, itemInventario);
-                toast.success("¡Ubicación y stock auditados con éxito! 🚀");
+                toast.success("¡Ubicación y stock auditados con éxito!");
                 setIdEditar(null);
             } else {
                 await crearInventario(itemInventario);
-                toast.success("¡Control de stock registrado en góndola! 🎉");
+                toast.success("¡Control de stock registrado en góndola!");
             }
             limpiarFormulario();
             setMostrarFormulario(false);
@@ -94,7 +90,7 @@ function Inventario() {
 
         try {
             await eliminarInventario(id);
-            toast.dark("Registro de stock removido 🗑️");
+            toast.dark("Registro de stock removido");
             cargarTodoElEcosistema();
         } catch (error) {
             console.error(error);

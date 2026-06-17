@@ -3,7 +3,6 @@ import { FaTrash, FaPlus, FaTimes, FaShoppingCart } from "react-icons/fa";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// Importación de servicios de Axios
 import { obtenerCompras, crearCompra, eliminarCompra } from "../services/compraService";
 import { obtenerProveedores } from "../services/proveedorService";
 import { obtenerUsuarios } from "../services/usuarioService";
@@ -74,7 +73,7 @@ function Compras() {
 
     try {
       await crearCompra(nuevaCompra);
-      toast.success("¡Compra registrada y stock aumentado! 📦🎉");
+      toast.success("¡Compra registrada y stock aumentado!");
       limpiarFormulario();
       setMostrarFormulario(false);
       cargarTodoElEcosistema(); // Recarga general para refrescar la tabla
@@ -90,7 +89,7 @@ function Compras() {
 
     try {
       await eliminarCompra(id);
-      toast.dark("Registro de compra eliminado 🗑️");
+      toast.dark("Registro de compra eliminado");
       cargarTodoElEcosistema();
     } catch (error) {
       console.error(error);

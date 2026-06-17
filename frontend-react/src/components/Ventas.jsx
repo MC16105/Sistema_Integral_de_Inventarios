@@ -85,7 +85,7 @@ function Ventas() {
 
     try {
       await crearVenta(nuevaVenta);
-      toast.success("¡Venta registrada y stock descontado! 🛒🎉");
+      toast.success("¡Venta registrada y stock descontado!");
       limpiarFormulario();
       setMostrarFormulario(false);
       cargarTodoElEcosistema(); // Recarga todo para refrescar la tabla

@@ -3,12 +3,8 @@ import { FaTrash, FaEdit, FaPlus, FaSync, FaTimes, FaUserShield } from "react-ic
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import {
-    obtenerUsuarios,
-    crearUsuario,
-    actualizarUsuario,
-    eliminarUsuario
-} from "../services/usuarioService";
+import {obtenerUsuarios, crearUsuario, actualizarUsuario, eliminarUsuario} 
+from "../services/usuarioService";
 import "../App.css";
 
 function Usuarios() {
@@ -54,11 +50,11 @@ function Usuarios() {
         try {
             if (idEditar) {
                 await actualizarUsuario(idEditar, usuario);
-                toast.success("¡Usuario actualizado correctamente! 🚀");
+                toast.success("¡Usuario actualizado correctamente!");
                 setIdEditar(null);
             } else {
                 await crearUsuario(usuario);
-                toast.success("¡Usuario registrado con éxito! 🎉");
+                toast.success("¡Usuario registrado con éxito!");
             }
             limpiarFormulario();
             setMostrarFormulario(false);
