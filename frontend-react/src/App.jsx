@@ -1,6 +1,7 @@
 import Producto from "./components/Productos";
 import Compras from "./components/Compras";
 import Ventas from "./components/Ventas";
+import Proveedores from "./components/Proveedores";
 import "./App.css";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Producto />
       <Compras />
       <Ventas />
+      <Proveedores/>
 
     </div>
   );
