@@ -1,19 +1,157 @@
-/* --- Estilos Generales --- */
+/*    1. ESTILOS GENERALES Y LAYOUT (ACTUALIZADO PARA SIDEBAR)  */
 body {
     margin: 0;
     background: #f8fafc;
-    /* Gris más sutil y moderno */
+    /* Gris sutil y moderno de tu paleta */
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #1e293b;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 40px auto;
-    padding: 0 20px;
+/* Contenedor maestro del Dashboard */
+.layout-dashboard {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 
-/* --- Encabezado --- */
+/* CONTENEDOR PRINCIPAL DERECHO */
+.contenido-principal {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Área donde se renderizan Productos, Ventas, etc. Reemplaza al viejo .container */
+.vista-contenedor {
+    padding: 40px;
+    flex-grow: 1;
+    overflow-y: auto;
+    /* Scroll vertical exclusivo para las tablas masivas */
+    box-sizing: border-box;
+}
+
+/* 2. INTERFAZ DE LA SIDEBAR LATERAL (NUEVO CON TU PALETA) */
+.sidebar {
+    width: 260px;
+    height: 100%;
+    background: #0f172a;
+    /* Slate oscuro premium de tus títulos */
+    color: #f8fafc;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 4px 0 10px rgba(15, 23, 42, 0.08);
+    flex-shrink: 0;
+    border-right: 1px solid #1e293b;
+}
+
+.sidebar-header {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #1e293b;
+}
+
+.sidebar-logo-icon {
+    font-size: 1.6rem;
+    color: #3b82f6;
+    /* Azul brillante a juego */
+}
+
+.sidebar-header h2 {
+    font-size: 1.3rem;
+    margin: 0;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+}
+
+.sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 24px 14px;
+    flex-grow: 1;
+}
+
+/* Botones de la Sidebar */
+.sidebar-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    background: transparent;
+    border: none;
+    color: #94a3b8;
+    /* Texto mutado */
+    padding: 12px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: left;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.sidebar-btn svg {
+    font-size: 1.25rem;
+    width: 24px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.sidebar-btn:hover {
+    background: #1e293b;
+    color: #f8fafc;
+}
+
+/* Estado Activo del Botón (Pestaña seleccionada) */
+.sidebar-btn.active {
+    background: #2563eb;
+    /* Tu azul principal */
+    color: white;
+}
+
+.sidebar-footer {
+    padding: 16px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #64748b;
+    border-top: 1px solid #1e293b;
+}
+
+/* --- BARRA SUPERIOR (TOPBAR) --- */
+.topbar {
+    background: white;
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.topbar h1 {
+    margin: 0;
+    font-size: 1.3rem;
+    color: #0f172a;
+    font-weight: 700;
+}
+
+.usuario-badge {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* 3. ENCABEZADOS Y COMPONENTES (MANTENIDOS) */
 .header-seccion {
     display: flex;
     justify-content: space-between;
@@ -22,28 +160,52 @@ body {
 }
 
 .header-seccion h2 {
-    font-size: 1.75rem;
+    font-size: 1.6rem;
     color: #0f172a;
     margin: 0;
     font-weight: 700;
 }
 
-/* --- Tarjeta del Formulario Desplegable --- */
-.card-formulario {
+/*    4. FORMULARIOS Y MODALES FLOTANTES (MANTENIDOS) */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.card-formulario.modal-content {
     background: white;
     border-radius: 16px;
     padding: 24px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
     border: 1px solid #e2e8f0;
-    margin-bottom: 30px;
-    animation: slideDown 0.25s ease-out;
+    width: 90%;
+    max-width: 600px;
+    margin-bottom: 0;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.card-formulario h3 {
-    margin-top: 0;
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
     color: #334155;
     font-size: 1.2rem;
+    font-weight: 700;
 }
 
 .formulario-grid {
@@ -68,16 +230,19 @@ body {
     color: #64748b;
 }
 
-.input-group input {
+.input-group input,
+.input-group select {
     padding: 10px 14px;
     border: 1px solid #cbd5e1;
     border-radius: 8px;
     font-size: 0.95rem;
     transition: all 0.2s;
     outline: none;
+    background-color: white;
 }
 
-.input-group input:focus {
+.input-group input:focus,
+.input-group select:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
@@ -88,7 +253,7 @@ body {
     margin-top: 20px;
 }
 
-/* --- Botones del Sistema --- */
+/* 5. BOTONES (MANTENIDOS) */
 button {
     display: inline-flex;
     align-items: center;
@@ -112,12 +277,17 @@ button {
     background: #1d4ed8;
 }
 
-.btn-cancelar {
-    background: #64748b;
+.btn-cerrar-modal {
+    background: transparent;
+    color: #64748b;
+    padding: 6px;
+    font-size: 1.2rem;
+    border-radius: 50%;
 }
 
-.btn-cancelar:hover {
-    background: #475569;
+.btn-cerrar-modal:hover {
+    background: #f1f5f9;
+    color: #0f172a;
 }
 
 .btn-guardar {
@@ -136,7 +306,7 @@ button {
     background: #059669;
 }
 
-/* --- Tabla con Look de Dashboard --- */
+/* 6. TABLAS (MANTENIDOS) */
 .tabla-contenedor {
     background: white;
     border-radius: 16px;
@@ -180,7 +350,7 @@ tr:hover {
     background: #f8fafc;
 }
 
-/* --- Componentes Internos de la Tabla --- */
+/* COMPONENTES INTERNOS DE TABLA */
 .text-bold {
     font-weight: 600;
     color: #0f172a;
@@ -228,7 +398,6 @@ tr:hover {
     color: #991b1b;
 }
 
-/* Botones de acción dentro de la tabla */
 .tabla-acciones {
     display: flex;
     gap: 8px;
@@ -260,184 +429,40 @@ tr:hover {
     color: white;
 }
 
-/* --- Animaciones --- */
-@keyframes slideDown {
+/* 7. ANIMACIONES DE INTERFAZ (MANTENIDOS)  */
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0);
+    }
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
     }
 }
 
 .animate-fade-in {
-    animation: slideDown 0.3s ease-out;
+    animation: fadeIn 0.25s ease-out;
 }
 
-/* --- Efecto Modal Flotante --- */
-
-/* El fondo oscuro que cubre toda la pantalla */
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(15, 23, 42, 0.6); /* Color pizarra con transparencia */
-    backdrop-filter: blur(4px); /* Efecto de desenfoque muy pro en el fondo */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999; /* Asegura que esté por encima de tablas y menús */
-    animation: fadeIn 0.2s ease-out;
-}
-
-/* Ajustes para la tarjeta cuando se vuelve modal */
-.card-formulario.modal-content {
-    width: 90%;
-    max-width: 600px;
-    margin-bottom: 0; /* Quitamos el margen ya que está flotando */
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); /* Animación con rebote sutil */
-}
-
-/* Encabezado del modal para poner la 'X' a la derecha */
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.modal-header h3 {
-    margin: 0;
-}
-
-.btn-cerrar-modal {
-    background: transparent;
-    color: #64748b;
-    padding: 6px;
-    font-size: 1.2rem;
-    border-radius: 50%;
-}
-
-.btn-cerrar-modal:hover {
-    background: #f1f5f9;
-    color: #0f172a;
-}
-
-/* --- Nuevas Animaciones --- */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes scaleUp {
-    from { transform: scale(0.95); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-.input-group input, 
-.input-group select {
-    padding: 10px 14px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 0.95rem;
-    transition: all 0.2s;
-    outline: none;
-    background-color: white; /* Evita que el navegador le ponga el gris feo por defecto */
-}
-
-.input-group select:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
-}
-
-/* --- Interfaz Estética de Login desde Cero --- */
-
-.login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100vw;
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    /* Fondo premium oscuro */
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-}
-
-.login-card {
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 16px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-    box-sizing: border-box;
-    animation: loginFadeUp 0.4s ease-out;
-}
-
-.login-header {
-    text-align: center;
-    margin-bottom: 28px;
-}
-
-.login-header h2 {
-    margin: 0 0 6px 0;
-    color: #0f172a;
-    font-size: 1.6rem;
+/* Subtítulos de sección dentro del menú lateral */
+.sidebar-seccion-titulo {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #64748b; /* Slate grisáceo sutil */
     font-weight: 700;
-}
-
-.login-header p {
-    margin: 0;
-    color: #64748b;
-    font-size: 0.9rem;
-}
-
-.login-form {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.btn-login-submit {
-    width: 100%;
-    padding: 12px;
-    font-size: 1rem;
-    font-weight: 600;
-    background: #2563eb;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background 0.2s;
+    padding: 12px 16px 4px 16px;
     margin-top: 8px;
-}
-
-.btn-login-submit:hover {
-    background: #1d4ed8;
-}
-
-.btn-login-submit:disabled {
-    background: #94a3b8;
-    cursor: not-allowed;
-}
-
-@keyframes loginFadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
