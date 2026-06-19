@@ -22,6 +22,7 @@ import Inventario from "./components/Inventario";
 import "./App.css";
 
 function App() {
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   // Estado para controlar qué vista se muestra en el panel central
   const [vistaActiva, setVistaActiva] = useState("productos");
 
@@ -51,7 +52,7 @@ function App() {
     <div className="layout-dashboard">
 
       {/* SIDEBAR LATERAL */}
-      <aside className="sidebar">
+      <aside className={`sidebar ${sidebarOpen ? "open" : ""}`}>
         <div className="sidebar-header">
           <FaWarehouse className="sidebar-logo-icon" />
           <h2>StockMaster</h2>
@@ -121,14 +122,27 @@ function App() {
           <p>v1.0 - PostgreSQL</p>
         </div>
       </aside>
+      <div
+  className={`sidebar-overlay ${sidebarOpen ? "active" : ""}`}
+  onClick={() => setSidebarOpen(false)}
+></div>
 
       {/* CONTENEDOR PRINCIPAL DERECHO */}
       <main className="contenido-principal">
         <header className="topbar">
-          <h1>Sistema Integral de Inventarios</h1>
-          <div className="usuario-badge">
-            <span>Admin</span>
-          </div>
+          
+           <button 
+    className="menu-toggle"
+    onClick={() => setSidebarOpen(true)}
+  >
+    ☰
+  </button>
+
+  <h1>Sistema Integral de Inventarios</h1>
+
+  <div className="usuario-badge">
+    <span>Admin</span>
+  </div>
         </header>
 
         <div className="vista-contenedor">

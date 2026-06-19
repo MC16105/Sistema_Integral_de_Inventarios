@@ -1,55 +1,81 @@
-/*    1. ESTILOS GENERALES Y LAYOUT (ACTUALIZADO PARA SIDEBAR)  */
+/* ============================= */
+/* 1. ESTILOS GENERALES */
+/* ============================= */
 body {
     margin: 0;
     background: #f8fafc;
-    /* Gris sutil y moderno de tu paleta */
     font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
     color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
-/* Contenedor maestro del Dashboard */
+/* ============================= */
+/* 2. LAYOUT MOBILE FIRST */
+/* ============================= */
 .layout-dashboard {
     display: flex;
-    width: 100vw;
+    flex-direction: column;
     height: 100vh;
     overflow: hidden;
 }
 
-/* CONTENEDOR PRINCIPAL DERECHO */
+/* CONTENIDO */
 .contenido-principal {
-    flex-grow: 1;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    flex: 1;
     overflow: hidden;
 }
 
-/* Área donde se renderizan Productos, Ventas, etc. Reemplaza al viejo .container */
 .vista-contenedor {
-    padding: 40px;
-    flex-grow: 1;
+    padding: 20px;
+    flex: 1;
     overflow-y: auto;
-    /* Scroll vertical exclusivo para las tablas masivas */
     box-sizing: border-box;
 }
 
-/* 2. INTERFAZ DE LA SIDEBAR LATERAL (NUEVO CON TU PALETA) */
+/* ============================= */
+/* 3. SIDEBAR (OFF-CANVAS MOBILE) */
+/* ============================= */
 .sidebar {
+    position: fixed;
+    top: 0;
+    left: -260px;
     width: 260px;
     height: 100%;
     background: #0f172a;
-    /* Slate oscuro premium de tus títulos */
     color: #f8fafc;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    box-shadow: 4px 0 10px rgba(15, 23, 42, 0.08);
-    flex-shrink: 0;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
     border-right: 1px solid #1e293b;
 }
 
+.sidebar.open {
+    left: 0;
+}
+
+/* OVERLAY */
+.sidebar-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 999;
+    animation: fadeIn 0.2s ease;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
+/* HEADER */
 .sidebar-header {
-    padding: 24px;
+    padding: 24px 20px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -57,52 +83,43 @@ body {
 }
 
 .sidebar-logo-icon {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     color: #3b82f6;
-    /* Azul brillante a juego */
 }
 
 .sidebar-header h2 {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     margin: 0;
     font-weight: 700;
+    letter-spacing: -0.025em;
     color: #ffffff;
-    letter-spacing: 0.5px;
 }
 
+/* MENU */
 .sidebar-menu {
     display: flex;
     flex-direction: column;
     gap: 6px;
-    padding: 24px 14px;
-    flex-grow: 1;
+    padding: 20px 14px;
+    flex: 1;
 }
 
-/* Botones de la Sidebar */
 .sidebar-btn {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
+    justify-content: flex-start; /* 1. Fuerza a todo a alinearse al inicio (izquierda) */
+    gap: 12px;                  /* 2. Controla el espacio exacto entre icono y texto */
     background: transparent;
     border: none;
     color: #94a3b8;
-    /* Texto mutado */
-    padding: 12px 16px;
+    padding: 10px 16px;         /* 3. Ajuste sutil de padding para mejor balance */
     border-radius: 8px;
     cursor: pointer;
-    text-align: left;
-    font-size: 0.95rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 500;
     transition: all 0.2s ease;
     width: 100%;
-}
-
-.sidebar-btn svg {
-    font-size: 1.25rem;
-    width: 24px;
-    text-align: center;
-    flex-shrink: 0;
+    text-align: left;           /* 4. Asegura que el texto se alinee a la izquierda */
 }
 
 .sidebar-btn:hover {
@@ -110,107 +127,105 @@ body {
     color: #f8fafc;
 }
 
-/* Estado Activo del Botón (Pestaña seleccionada) */
 .sidebar-btn.active {
     background: #2563eb;
-    /* Tu azul principal */
     color: white;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
+/* FOOTER */
 .sidebar-footer {
     padding: 16px;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #64748b;
     border-top: 1px solid #1e293b;
+    font-weight: 500;
 }
 
-/* --- BARRA SUPERIOR (TOPBAR) --- */
+/* ============================= */
+/* 4. TOPBAR */
+/* ============================= */
 .topbar {
     background: white;
-    padding: 18px 40px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+/* BOTÓN HAMBURGUESA */
+.menu-toggle {
+    font-size: 1.4rem;
+    background: #f1f5f9;
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #475569;
+    transition: background 0.2s;
+}
+
+.menu-toggle:hover {
+    background: #e2e8f0;
 }
 
 .topbar h1 {
     margin: 0;
-    font-size: 1.3rem;
-    color: #0f172a;
+    font-size: 1.1rem;
     font-weight: 700;
+    letter-spacing: -0.025em;
+    color: #0f172a;
 }
 
 .usuario-badge {
     background: #eff6ff;
     color: #2563eb;
     padding: 6px 14px;
-    border-radius: 20px;
+    border-radius: 9999px;
+    font-size: 0.8rem;
     font-weight: 600;
-    font-size: 0.85rem;
+    border: 1px solid #dbeafe;
 }
 
-/* 3. ENCABEZADOS Y COMPONENTES (MANTENIDOS) */
+/* ============================= */
+/* 5. HEADER SECCIÓN */
+/* ============================= */
 .header-seccion {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 10px;
     margin-bottom: 24px;
 }
 
 .header-seccion h2 {
-    font-size: 1.6rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
     color: #0f172a;
     margin: 0;
-    font-weight: 700;
 }
 
-/*    4. FORMULARIOS Y MODALES FLOTANTES (MANTENIDOS) */
-.modal-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(15, 23, 42, 0.6);
-    backdrop-filter: blur(4px);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
-    animation: fadeIn 0.2s ease-out;
-}
-
-.card-formulario.modal-content {
+/* ============================= */
+/* 6. FORMULARIOS */
+/* ============================= */
+.card-formulario {
     background: white;
-    border-radius: 16px;
+    border-radius: 12px;
     padding: 24px;
     border: 1px solid #e2e8f0;
-    width: 90%;
-    max-width: 600px;
-    margin-bottom: 0;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.modal-header h3 {
-    margin: 0;
-    color: #334155;
-    font-size: 1.2rem;
-    font-weight: 700;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 .formulario-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: 1fr;
     gap: 16px;
 }
 
@@ -220,40 +235,40 @@ body {
     gap: 6px;
 }
 
-.input-group.full-width {
-    grid-column: 1 / -1;
-}
-
 .input-group label {
     font-size: 0.85rem;
     font-weight: 600;
-    color: #64748b;
+    color: #475569;
 }
 
 .input-group input,
-.input-group select {
+.input-group select,
+.input-group textarea {
     padding: 10px 14px;
-    border: 1px solid #cbd5e1;
     border-radius: 8px;
+    border: 1px solid #cbd5e1;
+    font-family: inherit;
     font-size: 0.95rem;
-    transition: all 0.2s;
+    color: #1e293b;
+    background-color: #ffffff;
+    transition: all 0.2s ease;
     outline: none;
-    background-color: white;
 }
 
 .input-group input:focus,
-.input-group select:focus {
+.input-group select:focus,
+.input-group textarea:focus {
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-.formulario-acciones {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 20px;
+.input-group.full-width {
+    grid-column: 1 / -1;
 }
 
-/* 5. BOTONES (MANTENIDOS) */
+/* ============================= */
+/* 7. BOTONES */
+/* ============================= */
 button {
     display: inline-flex;
     align-items: center;
@@ -264,60 +279,54 @@ button {
     border-radius: 8px;
     padding: 10px 18px;
     cursor: pointer;
-    transition: all 0.2s;
     border: none;
+    transition: all 0.2s ease;
+}
+
+button:active {
+    transform: scale(0.98);
 }
 
 .btn-principal {
     background: #2563eb;
     color: white;
+    box-shadow: 0 2px 4px rgba(37, 99, 235, 0.1);
 }
 
 .btn-principal:hover {
     background: #1d4ed8;
-}
-
-.btn-cerrar-modal {
-    background: transparent;
-    color: #64748b;
-    padding: 6px;
-    font-size: 1.2rem;
-    border-radius: 50%;
-}
-
-.btn-cerrar-modal:hover {
-    background: #f1f5f9;
-    color: #0f172a;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
 }
 
 .btn-guardar {
-    background: #10b981;
-    color: white;
+    background: #10b981 !important; 
+    color: white !important;
     width: 100%;
-}
-
-@media(min-width: 640px) {
-    .btn-guardar {
-        width: auto;
-    }
+    box-shadow: 0 2px 4px rgba(16, 185, 129, 0.1);
+    margin-top: 12px; 
 }
 
 .btn-guardar:hover {
-    background: #059669;
+    background: #059669 !important;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.2);
 }
 
-/* 6. TABLAS (MANTENIDOS) */
+/* ============================= */
+/* 8. TABLAS */
+/* ============================= */
 .tabla-contenedor {
     background: white;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    border-radius: 12px;
+    overflow-x: auto;
     border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    margin-top: 32px; /* Separa la tabla del formulario superior */
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
+    min-width: 600px;
     text-align: left;
 }
 
@@ -328,7 +337,7 @@ th {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border-bottom: 2px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 th,
@@ -338,98 +347,76 @@ td {
 
 td {
     border-bottom: 1px solid #f1f5f9;
-    font-size: 0.95rem;
     color: #334155;
+    font-size: 0.95rem;
 }
 
 tr:last-child td {
     border-bottom: none;
 }
 
-tr:hover {
-    background: #f8fafc;
+tr:hover td {
+    background-color: #f8fafc;
 }
 
-/* COMPONENTES INTERNOS DE TABLA */
-.text-bold {
-    font-weight: 600;
-    color: #0f172a;
+/* --- COLORES FORZADOS PARA BOTONES DE ACCIÓN EN LA TABLA --- */
+
+/* Asegura el contenedor de los botones en la celda */
+.tabla-contenedor table td {
+    white-space: nowrap;
 }
 
-.text-precio {
-    font-weight: 600;
-    color: #059669;
+/* Primer botón: EDITAR (Gris claro) */
+.tabla-contenedor table td button:first-of-type {
+    background-color: #f1f5f9 !important;
+    color: #334155 !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px 12px;
+    margin-right: 6px;
 }
 
-.text-mutado {
-    color: #64748b;
-    font-size: 0.9rem;
+.tabla-contenedor table td button:first-of-type:hover {
+    background-color: #e2e8f0 !important;
 }
 
-.tabla-vacia {
-    text-align: center;
-    color: #94a3b8;
-    padding: 40px;
+/* Segundo botón: ELIMINAR (Rojo) */
+.tabla-contenedor table td button:last-of-type {
+    background-color: #fca5a5 !important;
+    color: #b91c1c !important;
+    border: 1px solid #f87171 !important;
+    padding: 8px 12px;
 }
 
-.badge-id {
-    background: #f1f5f9;
-    color: #64748b;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 0.8rem;
-    font-family: monospace;
+.tabla-contenedor table td button:last-of-type:hover {
+    background-color: #f87171 !important;
+    color: #ffffff !important;
 }
 
-.badge-stock {
-    padding: 4px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    font-weight: 600;
-}
-
-.stock-ok {
-    background: #d1fae5;
-    color: #065f46;
-}
-
-.stock-bajo {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.tabla-acciones {
+/* ============================= */
+/* 9. MODAL */
+/* ============================= */
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(4px);
     display: flex;
-    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+    animation: fadeIn 0.2s ease;
 }
 
-.btn-accion {
-    padding: 8px;
-    border-radius: 6px;
-    font-size: 1rem;
+.card-formulario.modal-content {
+    width: 90%;
+    max-width: 500px;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    animation: scaleUp 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.btn-editar {
-    background: #eff6ff;
-    color: #2563eb;
-}
-
-.btn-editar:hover {
-    background: #2563eb;
-    color: white;
-}
-
-.btn-eliminar {
-    background: #fef2f2;
-    color: #ef4444;
-}
-
-.btn-eliminar:hover {
-    background: #ef4444;
-    color: white;
-}
-
-/* 7. ANIMACIONES DE INTERFAZ (MANTENIDOS)  */
+/* ANIMACIONES */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -452,17 +439,49 @@ tr:hover {
     }
 }
 
-.animate-fade-in {
-    animation: fadeIn 0.25s ease-out;
+/* ============================= */
+/* 10. MEDIA QUERIES (ESCALAR) */
+/* ============================= */
+@media (min-width: 640px) {
+    .btn-guardar {
+        width: auto;
+    }
+
+    .formulario-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
 }
 
-/* Subtítulos de sección dentro del menú lateral */
-.sidebar-seccion-titulo {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: #64748b; /* Slate grisáceo sutil */
-    font-weight: 700;
-    padding: 12px 16px 4px 16px;
-    margin-top: 8px;
+@media (min-width: 768px) {
+    .layout-dashboard {
+        flex-direction: row;
+    }
+
+    .sidebar {
+        position: relative;
+        left: 0;
+        height: 100vh;
+    }
+
+    .sidebar-overlay {
+        display: none !important;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .vista-contenedor {
+        padding: 32px 40px;
+    }
+
+    .header-seccion {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .topbar {
+        padding: 18px 40px;
+    }
 }
