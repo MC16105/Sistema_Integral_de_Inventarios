@@ -1,7 +1,7 @@
 Integrantes - Grupo #4
 
 === SISTEMA INTEGRAL DE INVENTARIOS ===
-_____________________________________________________
+
 | N°| ALUMNO                              | CARNET  |
 |---|-------------------------------------|---------|
 | 1 | LUIS FERNANDO MORAN CASTRO         	| MC16105 |
@@ -222,6 +222,99 @@ Ver si todo está activo:
 Ver los logs (si algo falla o no conecta):
 
 - docker compose logs -f
+
+
+
+==============================================================================================================
+## C. CONTENIDO DEL ARCHIVO README.MD (PROYECTO FINAL)
+==============================================================================================================
+
+1. DESCRIPCION DEL PROYECTO
+   
+Muchas pequeñas y medianas empresas gestionan su inventario, clientes y ventas mediante procesos manuales o utilizando herramientas básicas como hojas de cálculo. Este método puede generar problemas como errores en el registro de productos, falta de actualización en las existencias y dificultades para localizar información de clientes o movimientos de inventario. Además, la ausencia de un sistema centralizado puede provocar pérdidas de información y retrasos en la toma de decisiones dentro del negocio. Ante esta problemática, se propone el desarrollo de un sistema integral de gestión que permita administrar de manera organizada los productos, clientes y operaciones relacionadas con el inventario. La aplicación facilitará el registro, consulta y actualización de la información en tiempo real, contribuyendo a mejorar el control de los recursos, optimizar los procesos administrativos y apoyar una gestión más eficiente dentro de la empresa.
+
+2. DIAGRAMA ENTIDAD - RELACION (E-R PostgreSQL)
+   
+<img width="1617" height="1065" alt="E-R" src="https://github.com/user-attachments/assets/40e4c615-ebc1-420b-888e-919e65983a5f" />
+
+3. MANUAL DE DESPLIEGUE
+   
+Requisitos Previos
+Para ejecutar este proyecto, asegúrate de tener instalado:
+Docker y Docker Compose
+
+Seguir estos pasos para poner el sistema en funcionamiento:
+Navegar al directorio del proyecto: Entrar a la terminal y dirígirte a la carpeta raíz del proyecto:
+
+   ```bash
+   cd ~/Escritorio/Sistema_Integral_de_Inventarios/
+
+    Ejecutar el despliegue:
+    Levanta todos los servicios (Base de datos, Backend y Frontend) en segundo plano:
+    Bash
+
+    docker compose up -d
+
+        Nota: Si se ha realizado cambios en el código fuente, usar docker compose up -d --build para asegurar que las imágenes se reconstruyan con los últimos cambios.
+
+    Verificación de servicios: Una vez que los contenedores estén activos, accede a las siguientes rutas desde el navegador:
+
+        Frontend: http://localhost:5173
+
+        Backend API: http://localhost:8080
+
+    Detención del sistema: Para apagar el entorno y liberar los recursos, ejecutar:
+    Bash
+
+    docker compose down
+
+ ```
+4. EVIDENCIAS DE FUNCIONAMIENTO
+
+- CAPTURAS DE PANTALLA DE LA DOCUMENTACION DE SWAGGER
+
+Capturas de JSON Swagger
+
+<img width="1919" height="1037" alt="image" src="https://github.com/user-attachments/assets/2377c5dd-5f38-4cf7-a65f-d652c0663cdb" />
+
+Captura General de Swagger
+
+<img width="1919" height="1039" alt="image" src="https://github.com/user-attachments/assets/447183f7-7aed-487e-aeb7-44723b4e977d" />
+
+- TABLA DE RUTAS (ENDPOINT) DEL BACKEND - (EJEMPLO DE TABLA CATEGORIAS)
+
+| METODO | ENDPOINT         | DESCRIPCION                                      |
+|--------|------------------|--------------------------------------------------|
+| GET    | /categorias      | Listar todas las Categorias Existentes           |
+| POST   | /categorias	    | Crear una nueva categoria                        |
+| PUT    | /categorias/{id} | Actualizar los datos de una Categoria especifica |
+| DELETE | /categorias/{id} | Eliminar una Categoria del Sistema               |
+
+- CAPTURAS DE LAS VISTAS
+
+Pantalla de Inicio
+
+<img width="1919" height="1038" alt="image" src="https://github.com/user-attachments/assets/ecc6ad9f-b76b-437a-a369-72c88503d672" />
+
+Formulario Desplegado
+
+<img width="1919" height="1039" alt="image" src="https://github.com/user-attachments/assets/f5d81e58-cc90-480c-a474-661a3e14a5b4" />
+
+Error de Conexion con BackEnd / PostgreSQL
+
+<img width="1919" height="1039" alt="image" src="https://github.com/user-attachments/assets/1d62c335-1900-4afb-a69a-b068a56db8a7" />
+
+Vista de los Contenedores en Docker Desktop
+
+<img width="1919" height="1041" alt="image" src="https://github.com/user-attachments/assets/30c76ee6-409a-4a31-a3a5-48b725973ddd" />
+
+
+
+
+
+
+
+
 
 
 
